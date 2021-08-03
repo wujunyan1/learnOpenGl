@@ -6,21 +6,31 @@ namespace Render
     float vertices[] = {
         -0.5f, -0.5f, 0.0f,
          0.5f, -0.5f, 0.0f,
-         0.0f,  0.5f, 0.0f
+         0.5f,  0.5f, 0.0f,
+         -0.5f,  0.8f, 0.0f
+    };
+
+    unsigned int indices[] = { // 注意索引从0开始! 
+        0, 1, 2, // 第一个三角形
+        2, 3, 0  // 第二个三角形
     };
 
     const char* vertexShaderSource = "#version 330 core\n"
         "layout (location = 0) in vec3 aPos;\n"
+        "out vec4 vertexColor;\n"
+        "uniform vec4 ourColor; \n"
         "void main()\n"
         "{\n"
         "   gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
+        "   vertexColor = vec4(ourColor.x, ourColor.y, ourColor.z, 1.0);\n"
         "}\0";
 
     const char* fragmentShaderSource = "#version 330 core\n"
+        "in vec4 vertexColor;\n"
         "out vec4 FragColor; \n"
         "void main()\n"
         "{\n"
-        "   FragColor = vec4(1.0f, 0.5f, 0.2f, 1.0f); \n"
+        "   FragColor = vec4(vertexColor.x, vertexColor.y, vertexColor.z, 1.0f); \n"
         "}\0";
 
     int MainRender::renderLoop(GLFWwindow* window)
@@ -34,6 +44,12 @@ namespace Render
         glBindBuffer(GL_ARRAY_BUFFER, VBO);  // 将GL_ARRAY_BUFFER 缓冲区 绑定到这个VBO上，之后再GL_ARRAY_BUFFER 这个缓冲区上的操作都将作用在这个 VBO上
 
         glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW); // 往GL_ARRAY_BUFFER缓冲区添加 顶点列表
+
+        unsigned int EBO;
+        glGenBuffers(1, &EBO);      // 生成EBO Element Buffer Object
+
+        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO); // 将GL_ELEMENT_ARRAY_BUFFER 缓冲区 绑定到这个EBO上，之后再GL_ELEMENT_ARRAY_BUFFER 这个缓冲区上的操作都将作用在这个 VBO上
+        glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);     // 往GL_ELEMENT_ARRAY_BUFFER缓冲区添加 顶点列表
 
 
         unsigned int vertexShader;
@@ -89,8 +105,16 @@ namespace Render
             glClear(GL_COLOR_BUFFER_BIT);
 
             glBindVertexArray(VAO);
+            glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+
+            float timeValue = glfwGetTime();
+            float greenValue = (sin(timeValue) / 2.0f) + 0.5f;
+            int vertexColorLocation = glGetUniformLocation(shaderProgram, "ourColor");
             glUseProgram(shaderProgram);
-            glDrawArrays(GL_TRIANGLES, 0, 3);
+            glUniform4f(vertexColorLocation, 0.0f, greenValue, 0.0f, 1.0f);
+            // glDrawArrays(GL_TRIANGLES, 0, 3);
+
+            glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 
             glfwPollEvents();
             glfwSwapBuffers(window);

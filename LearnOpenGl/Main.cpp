@@ -24,6 +24,8 @@ int main(int argc, char* argv[])
     }
 
     glViewport(0, 0, 1280, 720);
+    glEnable(GL_CULL_FACE);    // ÌÞ³ýÃæ
+    glCullFace(GL_BACK);       // ÌÞ³ý±³Ãæ
 
     glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
 
