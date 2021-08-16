@@ -13,8 +13,14 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="shader">
+    <Filter Include="asserts">
       <UniqueIdentifier>{172b4657-65c9-4c80-b8fa-ed08f33a96a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="shader">
+      <UniqueIdentifier>{eabf8d73-2c16-4770-bc2e-fcbe8c40a71f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="file">
+      <UniqueIdentifier>{5b33a1d0-77bf-4c2d-8f5c-cb44de37665b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -27,6 +33,12 @@
     <ClInclude Include="resource.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="Shader.h">
+      <Filter>shader</Filter>
+    </ClInclude>
+    <ClInclude Include="FilePathManager.h">
+      <Filter>file</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -35,11 +47,17 @@
     <ClCompile Include="MainRender.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="Shader.cpp">
+      <Filter>shader</Filter>
+    </ClCompile>
+    <ClCompile Include="FilePathManager.cpp">
+      <Filter>file</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
     <None Include="DefaultShader.glsl">
-      <Filter>shader</Filter>
+      <Filter>asserts</Filter>
     </None>
   </ItemGroup>
 </Project>

@@ -1,8 +1,16 @@
 #include "Main.h"
 #include "MainRender.h"
+#include <direct.h>
+#include "FilePathManager.h"
 
 int main(int argc, char* argv[])
 {
+    char buffer[64];
+    char* c = _getcwd(buffer, 64);
+
+    printf(c);
+    FilePathManager::setRootPath(buffer);
+
     glfwInit();
     glfwInitHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwInitHint(GLFW_CONTEXT_VERSION_MINOR, 3);
@@ -26,6 +34,8 @@ int main(int argc, char* argv[])
     glViewport(0, 0, 1280, 720);
     glEnable(GL_CULL_FACE);    // 剔除面
     glCullFace(GL_BACK);       // 剔除背面
+
+    //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);  // 线框模式
 
     glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
 
