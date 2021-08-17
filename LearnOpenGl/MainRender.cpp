@@ -1,14 +1,16 @@
 #include "MainRender.h"
 #include <iostream>
 #include "Shader.h"
+#include "ImageLoad.h"
 
 namespace Render 
 {
     float vertices[] = {
-        -0.5f, -0.5f, 0.0f, 0.5f, 0.5f, 0.0f,
-         0.5f, -0.5f, 0.0f, 0.1f, 0.2f, 0.8f,
-         0.5f,  0.5f, 0.0f, 0.3f, 0.9f, 0.6f,
-         -0.5f,  0.8f, 0.0f, 0.7f, 0.1f, 0.4f
+        //     ---- 位置 ----       ---- 颜色 ----     - 纹理坐标 -
+        -0.5f, -0.5f, 0.0f, 0.5f, 0.5f, 0.0f,    0.0f, 0.0f,
+         0.5f, -0.5f, 0.0f, 0.1f, 0.2f, 0.8f,   1.0f, 0.0f,
+         0.5f,  0.8f, 0.0f, 0.3f, 0.9f, 0.6f,   1.0f, 0.8f,
+         -0.5f,  0.8f, 0.0f, 0.7f, 0.1f, 0.4f,   0.0f, 0.8f
     };
 
     float vertices2[] = {
@@ -105,14 +107,20 @@ namespace Render
 
         Shader* shader = new Shader("/asserts/shaders/shader.vs", "/asserts/shaders/shader.fs");
 
+        Image* image = ImageLoad::LoadImage("/asserts/images/Megane.png");
+
         // 顶点属性
-        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);   // 绑定顶点 0开始， 3个数据， float类型， 非规范化， 数据之间的间隔， 额外参数
+        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)0);   // 绑定顶点 0开始， 3个数据， float类型， 非规范化， 数据之间的间隔， 额外参数
         // 这时使用的数据是 当前 GL_ARRAY_BUFFER 缓冲区的数据
         glEnableVertexAttribArray(0);
 
         // 颜色属性
-        glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
+        glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(3 * sizeof(float)));
         glEnableVertexAttribArray(1);
+
+        // UV纹理
+        glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(6 * sizeof(float)));
+        glEnableVertexAttribArray(2);
 
         while (!glfwWindowShouldClose(window)) {
             processInput(window);
@@ -132,6 +140,9 @@ namespace Render
 
             shader->use();
             shader->setFloat4("ourColor", 0.0f, greenValue, 0.0f, 1.0f);
+            shader->setInt("ourTexture", 0);
+
+            image->use();
 
             // glDrawArrays(GL_TRIANGLES, 0, 3);
 

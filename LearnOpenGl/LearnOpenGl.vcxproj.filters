@@ -39,6 +39,15 @@
     <ClInclude Include="FilePathManager.h">
       <Filter>file</Filter>
     </ClInclude>
+    <ClInclude Include="stb_image.h">
+      <Filter>file</Filter>
+    </ClInclude>
+    <ClInclude Include="ImageLoad.h">
+      <Filter>file</Filter>
+    </ClInclude>
+    <ClInclude Include="Image.h">
+      <Filter>file</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -51,6 +60,12 @@
       <Filter>shader</Filter>
     </ClCompile>
     <ClCompile Include="FilePathManager.cpp">
+      <Filter>file</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageLoad.cpp">
+      <Filter>file</Filter>
+    </ClCompile>
+    <ClCompile Include="Image.cpp">
       <Filter>file</Filter>
     </ClCompile>
   </ItemGroup>

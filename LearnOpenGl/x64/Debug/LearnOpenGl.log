@@ -1,4 +1,27 @@
 ﻿D:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(505,5): warning MSB8004: Output 目录未以斜杠结尾。  此生成实例将添加斜杠，因为必须有这个斜杠才能正确计算 Output 目录。
-  Shader.cpp
+  Image.cpp
+  ImageLoad.cpp
+  MainRender.cpp
 D:\vs\project\LearnOpenGl\LearnOpenGl\Shader.h(3,10): warning C4067: 预处理器指令后有意外标记 - 应输入换行符
+D:\vs\project\LearnOpenGl\LearnOpenGl\MainRender.cpp(135,29): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+  正在生成代码...
+LINK : warning LNK4098: 默认库“LIBCMTD”与其他库的使用冲突；请使用 /NODEFAULTLIB:library
+LINK : warning LNK4217: 符号“__glewGenerateMipmap”(在“ glew.lib(glew.obj)”中定义)已由“ImageLoad.obj”(函数“"public: __cdecl Image::Image(int,int,int,unsigned char *)" (??0Image@@QEAA@HHHPEAE@Z)”中)导入
+LINK : warning LNK4217: 符号“__glewAttachShader”(在“ glew.lib(glew.obj)”中定义)已由“Shader.obj”(函数“"public: __cdecl Shader::Shader(char const *,char const *)" (??0Shader@@QEAA@PEBD0@Z)”中)导入
+LINK : warning LNK4217: 符号“__glewCompileShader”(在“ glew.lib(glew.obj)”中定义)已由“Shader.obj”(函数“"public: __cdecl Shader::Shader(char const *,char const *)" (??0Shader@@QEAA@PEBD0@Z)”中)导入
+LINK : warning LNK4217: 符号“__glewCreateProgram”(在“ glew.lib(glew.obj)”中定义)已由“Shader.obj”(函数“"public: __cdecl Shader::Shader(char const *,char const *)" (??0Shader@@QEAA@PEBD0@Z)”中)导入
+LINK : warning LNK4217: 符号“__glewCreateShader”(在“ glew.lib(glew.obj)”中定义)已由“Shader.obj”(函数“"public: __cdecl Shader::Shader(char const *,char const *)" (??0Shader@@QEAA@PEBD0@Z)”中)导入
+LINK : warning LNK4217: 符号“__glewDeleteShader”(在“ glew.lib(glew.obj)”中定义)已由“Shader.obj”(函数“"public: __cdecl Shader::Shader(char const *,char const *)" (??0Shader@@QEAA@PEBD0@Z)”中)导入
+LINK : warning LNK4217: 符号“__glewGetProgramInfoLog”(在“ glew.lib(glew.obj)”中定义)已由“Shader.obj”(函数“"public: __cdecl Shader::Shader(char const *,char const *)" (??0Shader@@QEAA@PEBD0@Z)”中)导入
+LINK : warning LNK4217: 符号“__glewGetProgramiv”(在“ glew.lib(glew.obj)”中定义)已由“Shader.obj”(函数“"public: __cdecl Shader::Shader(char const *,char const *)" (??0Shader@@QEAA@PEBD0@Z)”中)导入
+LINK : warning LNK4217: 符号“__glewGetShaderInfoLog”(在“ glew.lib(glew.obj)”中定义)已由“Shader.obj”(函数“"public: __cdecl Shader::Shader(char const *,char const *)" (??0Shader@@QEAA@PEBD0@Z)”中)导入
+LINK : warning LNK4217: 符号“__glewGetShaderiv”(在“ glew.lib(glew.obj)”中定义)已由“Shader.obj”(函数“"public: __cdecl Shader::Shader(char const *,char const *)" (??0Shader@@QEAA@PEBD0@Z)”中)导入
+LINK : warning LNK4217: 符号“__glewGetUniformLocation”(在“ glew.lib(glew.obj)”中定义)已由“Shader.obj”(函数“"public: void __cdecl Shader::setBool(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &,bool)const " (?setBool@Shader@@QEBAXAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@_N@Z)”中)导入
+LINK : warning LNK4217: 符号“__glewLinkProgram”(在“ glew.lib(glew.obj)”中定义)已由“Shader.obj”(函数“"public: __cdecl Shader::Shader(char const *,char const *)" (??0Shader@@QEAA@PEBD0@Z)”中)导入
+LINK : warning LNK4217: 符号“__glewShaderSource”(在“ glew.lib(glew.obj)”中定义)已由“Shader.obj”(函数“"public: __cdecl Shader::Shader(char const *,char const *)" (??0Shader@@QEAA@PEBD0@Z)”中)导入
+LINK : warning LNK4217: 符号“__glewUniform1f”(在“ glew.lib(glew.obj)”中定义)已由“Shader.obj”(函数“"public: void __cdecl Shader::setFloat(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &,float)const " (?setFloat@Shader@@QEBAXAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@M@Z)”中)导入
+LINK : warning LNK4217: 符号“__glewUniform1i”(在“ glew.lib(glew.obj)”中定义)已由“Shader.obj”(函数“"public: void __cdecl Shader::setBool(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &,bool)const " (?setBool@Shader@@QEBAXAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@_N@Z)”中)导入
+LINK : warning LNK4217: 符号“__glewUniform4f”(在“ glew.lib(glew.obj)”中定义)已由“Shader.obj”(函数“"public: void __cdecl Shader::setFloat4(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &,float,float,float,float)const " (?setFloat4@Shader@@QEBAXAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@MMMM@Z)”中)导入
+LINK : warning LNK4217: 符号“__glewUseProgram”(在“ glew.lib(glew.obj)”中定义)已由“Shader.obj”(函数“"public: void __cdecl Shader::use(void)" (?use@Shader@@QEAAXXZ)”中)导入
+glew.lib(glew.obj) : warning LNK4099: 未找到 PDB“vc110.pdb”(使用“glew.lib(glew.obj)”或在“D:\vs\project\LearnOpenGl\res\vc110.pdb”中寻找)；正在链接对象，如同没有调试信息一样
   LearnOpenGl.vcxproj -> D:\vs\project\LearnOpenGl\res\LearnOpenGl.exe

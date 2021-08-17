@@ -1,3 +1,5 @@
+#define STB_IMAGE_IMPLEMENTATION
+#include "stb_image.h"
 #include "Main.h"
 #include "MainRender.h"
 #include <direct.h>
@@ -38,6 +40,12 @@ int main(int argc, char* argv[])
     //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);  // 线框模式
 
     //glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST); // 纹理为临近，即取最靠近这个点的像素数值
+
+
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);   // 纹理为线性的，即取点和点附近的值进行运算
 
     glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);

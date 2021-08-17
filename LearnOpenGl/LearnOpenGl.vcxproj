@@ -147,13 +147,18 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="FilePathManager.h" />
+    <ClInclude Include="Image.h" />
+    <ClInclude Include="ImageLoad.h" />
     <ClInclude Include="Main.h" />
     <ClInclude Include="MainRender.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Shader.h" />
+    <ClInclude Include="stb_image.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FilePathManager.cpp" />
+    <ClCompile Include="Image.cpp" />
+    <ClCompile Include="ImageLoad.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MainRender.cpp" />
     <ClCompile Include="Shader.cpp" />
