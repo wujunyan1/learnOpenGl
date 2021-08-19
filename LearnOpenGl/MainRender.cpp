@@ -3,6 +3,9 @@
 #include "Shader.h"
 #include "ImageLoad.h"
 
+#include "Object.h"
+#include "Transform.h"
+
 namespace Render 
 {
     float vertices[] = {
@@ -46,6 +49,9 @@ namespace Render
 
     int MainRender::renderLoop(GLFWwindow* window)
     {
+        Object* o = new Object();
+        Transform * transform = o->AddComponent<Transform>();
+
         unsigned int VAO;
         glGenVertexArrays(1, &VAO);  // 生成一个VAO， 将产生的VAO的坐标传给 VAO， 1为产生1个，VAO可以是数组去接
         glBindVertexArray(VAO);     // 使用这个VAO，绑定VAO到工作区

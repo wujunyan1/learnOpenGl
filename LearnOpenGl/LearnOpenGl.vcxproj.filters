@@ -22,6 +22,9 @@
     <Filter Include="file">
       <UniqueIdentifier>{5b33a1d0-77bf-4c2d-8f5c-cb44de37665b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="core">
+      <UniqueIdentifier>{975bc1ac-23e8-4708-9b30-7ec10c6279d8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Main.h">
@@ -48,6 +51,18 @@
     <ClInclude Include="Image.h">
       <Filter>file</Filter>
     </ClInclude>
+    <ClInclude Include="Object.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="Transform.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector3.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="Component.h">
+      <Filter>core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -67,6 +82,18 @@
     </ClCompile>
     <ClCompile Include="Image.cpp">
       <Filter>file</Filter>
+    </ClCompile>
+    <ClCompile Include="Object.cpp">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="Transform.cpp">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="Vector3.cpp">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="Component.cpp">
+      <Filter>core</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
