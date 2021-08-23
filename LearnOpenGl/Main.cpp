@@ -5,6 +5,10 @@
 #include <direct.h>
 #include "FilePathManager.h"
 
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
+
 int main(int argc, char* argv[])
 {
     char buffer[64];
@@ -41,6 +45,9 @@ int main(int argc, char* argv[])
 
     //glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST); // 纹理为临近，即取最靠近这个点的像素数值
 
+
+    glm::mat4 projection;
+    projection = glm::perspective(glm::radians(45.0f), 1280.0f / 720, 0.1f, 100.0f);
 
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);

@@ -23,7 +23,6 @@ public:
 	{
 		T* t = new T();
 		componentList->push_back(t);
-
 		return t;
 	}
 

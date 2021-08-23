@@ -51,6 +51,9 @@ namespace Render
     {
         Object* o = new Object();
         Transform * transform = o->AddComponent<Transform>();
+        transform->SetPosition(Vector3(0.1f, 0.1f, 0.1f));
+        transform->SetRotate(Vector3(1.02f, 0.02f, 1.0f));
+        transform->SetScale(Vector3(2.0f, 1.1f, 1.1f));
 
         unsigned int VAO;
         glGenVertexArrays(1, &VAO);  // 生成一个VAO， 将产生的VAO的坐标传给 VAO， 1为产生1个，VAO可以是数组去接
@@ -128,6 +131,13 @@ namespace Render
         glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(6 * sizeof(float)));
         glEnableVertexAttribArray(2);
 
+        glm::mat4 view = glm::mat4(1.0f);
+        // 注意，我们将矩阵向我们要进行移动场景的反方向移动。
+        view = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f));
+
+        glm::mat4 projection = glm::mat4(1.0f);
+        projection = glm::perspective(glm::radians(45.0f), 1280.0f / 720, 0.1f, 100.0f);
+
         while (!glfwWindowShouldClose(window)) {
             processInput(window);
 
@@ -147,6 +157,9 @@ namespace Render
             shader->use();
             shader->setFloat4("ourColor", 0.0f, greenValue, 0.0f, 1.0f);
             shader->setInt("ourTexture", 0);
+            shader->setMat4("model", transform->GetLocalMat4());
+            shader->setMat4("view", view);
+            shader->setMat4("projection", projection);
 
             image->use();
 

@@ -106,3 +106,9 @@ void Shader::setFloat4(const std::string& name, float r, float g, float b, float
     int vertexColorLocation = glGetUniformLocation(ID, name.c_str());
     glUniform4f(vertexColorLocation, r , g, b, a);
 }
+
+void Shader::setMat4(const std::string& name, glm::mat4 mat) const
+{
+    int modelLoc = glGetUniformLocation(ID, name.c_str());
+    glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(mat));
+}
