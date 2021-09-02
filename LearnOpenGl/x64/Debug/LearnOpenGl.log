@@ -1,7 +1,4 @@
-﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(499,5): warning MSB8004: Output 目录未以斜杠结尾。  此生成实例将添加斜杠，因为必须有这个斜杠才能正确计算 Output 目录。
+﻿D:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(505,5): warning MSB8004: Output 目录未以斜杠结尾。  此生成实例将添加斜杠，因为必须有这个斜杠才能正确计算 Output 目录。
   MainRender.cpp
-E:\learn\learnOpenGl\LearnOpenGl\Shader.h(3,10): warning C4067: 预处理器指令后有意外标记 - 应输入换行符
-E:\learn\learnOpenGl\LearnOpenGl\MainRender.cpp(151,29): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
-  Object.cpp
-  正在生成代码...
-  LearnOpenGl.vcxproj -> E:\learn\learnOpenGl\res\LearnOpenGl.exe
+D:\vs\project\LearnOpenGl\LearnOpenGl\Shader.h(3,10): warning C4067: 预处理器指令后有意外标记 - 应输入换行符
+  LearnOpenGl.vcxproj -> D:\vs\project\LearnOpenGl\res\LearnOpenGl.exe

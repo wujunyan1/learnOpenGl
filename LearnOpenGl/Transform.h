@@ -8,6 +8,19 @@
 class Transform :public Component
 {
 public:
+
+	struct TransfromData 
+	{
+		Vector3 position;
+		Vector3 scale;
+		Vector3 rotate;
+
+		glm::mat4 localMat4;
+		glm::mat4 worldMat4;
+
+		bool matChanged;
+	};
+
 	Transform() {
 		position = Vector3();
 		scale = Vector3(1.0f, 1.0f, 1.0f);

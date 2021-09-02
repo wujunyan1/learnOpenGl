@@ -7,6 +7,7 @@ class Object
 public:
 	Object() {
 		componentList = new std::vector<Component*>();
+		children = NULL;
 	}
 
 	~Object() {
@@ -26,7 +27,19 @@ public:
 		return t;
 	}
 
+	void AddChild(Object* child) {
+		if (children == NULL) {
+			children = new std::vector<Object*>();
+		}
+		children->push_back(child);
+	}
+
+	std::vector<Object*>* getChildren() {
+		return children;
+	}
+
 private:
 	std::vector<Component*>* componentList;
+	std::vector<Object*>* children;
 };
 

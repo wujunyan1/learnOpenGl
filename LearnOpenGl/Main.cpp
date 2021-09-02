@@ -38,8 +38,9 @@ int main(int argc, char* argv[])
     }
 
     glViewport(0, 0, 1280, 720);
-    glEnable(GL_CULL_FACE);    // 剔除面
-    glCullFace(GL_BACK);       // 剔除背面
+    //glEnable(GL_CULL_FACE);    // 剔除面
+    //glCullFace(GL_BACK);       // 剔除背面
+    glEnable(GL_DEPTH_TEST);
 
     //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);  // 线框模式
 
