@@ -149,6 +149,7 @@
   <ItemGroup>
     <ClInclude Include="Component.h" />
     <ClInclude Include="FilePathManager.h" />
+    <ClInclude Include="Game.h" />
     <ClInclude Include="Image.h" />
     <ClInclude Include="ImageLoad.h" />
     <ClInclude Include="Main.h" />
@@ -163,6 +164,7 @@
   <ItemGroup>
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="FilePathManager.cpp" />
+    <ClCompile Include="Game.cpp" />
     <ClCompile Include="Image.cpp" />
     <ClCompile Include="ImageLoad.cpp" />
     <ClCompile Include="Main.cpp" />

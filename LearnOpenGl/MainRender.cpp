@@ -5,9 +5,10 @@
 
 #include "Object.h"
 #include "Transform.h"
+#include "Game.h"
 
-namespace Render 
-{
+using namespace Render;
+
     float vertices[] = {
     -0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
      0.5f, -0.5f, -0.5f,  1.0f, 0.0f,
@@ -182,6 +183,8 @@ namespace Render
         glm::mat4 projection = glm::mat4(1.0f);
         projection = glm::perspective(glm::radians(45.0f), 1280.0f / 720, 0.1f, 100.0f);
 
+        long time = getCurrentTime();
+
         while (!glfwWindowShouldClose(window)) {
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
             processInput(window);
@@ -192,12 +195,6 @@ namespace Render
 
             glBindVertexArray(VAO);
             glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-
-            /*float timeValue = glfwGetTime();
-            float greenValue = (sin(timeValue) / 2.0f) + 0.5f;
-            int vertexColorLocation = glGetUniformLocation(shaderProgram, "ourColor");
-            glUseProgram(shaderProgram);
-            glUniform4f(vertexColorLocation, 0.0f, greenValue, 0.0f, 1.0f);*/
 
             shader->use();
             shader->setFloat4("ourColor", 0.0f, 0.0f, 0.0f, 1.0f);
@@ -248,6 +245,10 @@ namespace Render
 
             glfwPollEvents();
             glfwSwapBuffers(window);
+
+            long currTime = getCurrentTime();
+            Core::Game::GetInstance()->Tick(currTime - time);
+            time = currTime;
         }
 
 
@@ -262,4 +263,4 @@ namespace Render
             glfwSetWindowShouldClose(window, true);
         }
     }
-}
+
