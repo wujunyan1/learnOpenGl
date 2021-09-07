@@ -1,4 +1,5 @@
 #include "Component.h"
+using namespace Core;
 
 void Component::init()
 {

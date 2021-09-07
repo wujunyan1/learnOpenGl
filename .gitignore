@@ -1,1 +1,10 @@
 .vs
+*.obj
+*.pdb
+*.tlog
+*.exe
+*.ilk
+*.idb
+*.recipe
+*.log
+res/LearnOpenGl.ilk

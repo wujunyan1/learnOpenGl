@@ -1,8 +1,12 @@
 #pragma once
-class Component
+
+namespace Core 
 {
-public:
-	virtual void init();
-	virtual void onDestroy();
-};
+	class Component
+	{
+	public:
+		virtual void init();
+		virtual void onDestroy();
+	};
+}
 

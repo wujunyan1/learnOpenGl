@@ -2,44 +2,48 @@
 
 #include <vector>
 #include "Component.h"
-class Object
-{
-public:
-	Object() {
-		componentList = new std::vector<Component*>();
-		children = NULL;
-	}
 
-	~Object() {
-		for (auto i : *componentList)
-		{
-			i->onDestroy();
-			delete i;
-		}
-		delete componentList;
-	}
-
-	template <typename T = Component>
-	T* AddComponent() 
+namespace Core {
+	class Object
 	{
-		T* t = new T();
-		componentList->push_back(t);
-		return t;
-	}
-
-	void AddChild(Object* child) {
-		if (children == NULL) {
-			children = new std::vector<Object*>();
+	public:
+		Object() {
+			componentList = new std::vector<Component*>();
+			children = NULL;
 		}
-		children->push_back(child);
-	}
 
-	std::vector<Object*>* getChildren() {
-		return children;
-	}
+		~Object() {
+			for (auto i : *componentList)
+			{
+				i->onDestroy();
+				delete i;
+			}
+			delete componentList;
+		}
 
-private:
-	std::vector<Component*>* componentList;
-	std::vector<Object*>* children;
-};
+		template <typename T = Component>
+		T* AddComponent()
+		{
+			T* t = new T();
+			componentList->push_back(t);
+			return t;
+		}
 
+		void AddChild(Object* child) {
+			if (children == NULL) {
+				children = new std::vector<Object*>();
+			}
+			children->push_back(child);
+		}
+
+		std::vector<Object*>* getChildren() {
+			return children;
+		}
+
+	private:
+		std::vector<Component*>* componentList;
+		std::vector<Object*>* children;
+	};
+
+
+}

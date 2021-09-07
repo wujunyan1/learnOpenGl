@@ -8,6 +8,7 @@
 #include "Object.h"
 #include "Transform.h"
 #include "Game.h"
+#include "Camera.h"
 
 using namespace Render;
 
@@ -96,11 +97,14 @@ using namespace Render;
     int MainRender::renderLoop(GLFWwindow* window)
     {
 
-        Object* o = new Object();
-        Transform * transform = o->AddComponent<Transform>();
+        Core::Object* o = new Core::Object();
+        Core::Transform * transform = o->AddComponent<Core::Transform>();
         transform->SetPosition(Vector3(0.1f, 0.1f, 0.1f));
         transform->SetRotate(Vector3(1.02f, 0.02f, 1.0f));
         transform->SetScale(Vector3(1.0f, 1.0f, 1.0f));
+
+        Core::Camera carmera(Vector3(0.0f, 0.0f, 3.0f), Vector3(0.0f, 0.0f, 0.0f), Vector3(0.0f, 1.0f, 0.0f));
+
 
         unsigned int VAO;
         glGenVertexArrays(1, &VAO);  // ����һ��VAO�� ��������VAO�����괫�� VAO�� 1Ϊ����1����VAO����������ȥ��
@@ -165,6 +169,8 @@ using namespace Render;
 
         Image* image = ImageLoad::LoadImage("/asserts/images/container.jpg");
 
+
+
         // ��������
         glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);   // �󶨶��� 0��ʼ�� 3�����ݣ� float���ͣ� �ǹ淶���� ����֮��ļ���� �������
         // ��ʱʹ�õ������� ��ǰ GL_ARRAY_BUFFER ������������
@@ -178,9 +184,10 @@ using namespace Render;
         glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
         glEnableVertexAttribArray(2);
 
-        glm::mat4 view = glm::mat4(1.0f);
+        glm::mat4 view = carmera.GetViewMatrix(); // glm::mat4(1.0f);
         // ע�⣬���ǽ�����������Ҫ�����ƶ������ķ������ƶ���
-        view = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f));
+        //view = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f));
+
 
         glm::mat4 projection = glm::mat4(1.0f);
         projection = glm::perspective(glm::radians(45.0f), 1280.0f / 720, 0.1f, 100.0f);
@@ -290,4 +297,3 @@ using namespace Render;
             frame = 0;
         }
     }
-}
