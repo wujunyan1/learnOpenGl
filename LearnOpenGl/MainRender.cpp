@@ -1,5 +1,7 @@
 #include "MainRender.h"
 #include <iostream>
+#include <cstdlib>
+
 #include "Shader.h"
 #include "ImageLoad.h"
 
@@ -54,9 +56,9 @@ using namespace Render;
     };
 
 
-    unsigned int indices[] = { // ×¢ÒâË÷Òý´Ó0¿ªÊ¼! 
-        0, 1, 2, // µÚÒ»¸öÈý½ÇÐÎ
-        2, 3, 0  // µÚ¶þ¸öÈý½ÇÐÎ
+    unsigned int indices[] = { // ×¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½0ï¿½ï¿½Ê¼! 
+        0, 1, 2, // ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+        2, 3, 0  // ï¿½Ú¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     };
 
     Vector3 cubePositions[] = {
@@ -74,7 +76,7 @@ using namespace Render;
 
     const char* vertexShaderSource = "#version 330 core\n"
         "layout (location = 0) in vec3 aPos;\n"
-        "layout(location = 1) in vec3 aColor;\n" // ÑÕÉ«±äÁ¿µÄÊôÐÔÎ»ÖÃÖµÎª 1
+        "layout(location = 1) in vec3 aColor;\n" // ï¿½ï¿½É«ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½ÖµÎª 1
         "out vec4 vertexColor;\n"
         "uniform vec4 ourColor; \n"
         "void main()\n"
@@ -101,30 +103,30 @@ using namespace Render;
         transform->SetScale(Vector3(1.0f, 1.0f, 1.0f));
 
         unsigned int VAO;
-        glGenVertexArrays(1, &VAO);  // Éú³ÉÒ»¸öVAO£¬ ½«²úÉúµÄVAOµÄ×ø±ê´«¸ø VAO£¬ 1Îª²úÉú1¸ö£¬VAO¿ÉÒÔÊÇÊý×éÈ¥½Ó
-        glBindVertexArray(VAO);     // Ê¹ÓÃÕâ¸öVAO£¬°ó¶¨VAOµ½¹¤×÷Çø
+        glGenVertexArrays(1, &VAO);  // ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½VAOï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½VAOï¿½ï¿½ï¿½ï¿½ï¿½ê´«ï¿½ï¿½ VAOï¿½ï¿½ 1Îªï¿½ï¿½ï¿½ï¿½1ï¿½ï¿½ï¿½ï¿½VAOï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¥ï¿½ï¿½
+        glBindVertexArray(VAO);     // Ê¹ï¿½ï¿½ï¿½ï¿½ï¿½VAOï¿½ï¿½ï¿½ï¿½VAOï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
         unsigned int VBO;
-        glGenBuffers(1, &VBO);      // Éú³ÉVBO vertex buffer objects
-        glBindBuffer(GL_ARRAY_BUFFER, VBO);  // ½«GL_ARRAY_BUFFER »º³åÇø °ó¶¨µ½Õâ¸öVBOÉÏ£¬Ö®ºóÔÙGL_ARRAY_BUFFER Õâ¸ö»º³åÇøÉÏµÄ²Ù×÷¶¼½«×÷ÓÃÔÚÕâ¸ö VBOÉÏ
+        glGenBuffers(1, &VBO);      // ï¿½ï¿½ï¿½ï¿½VBO vertex buffer objects
+        glBindBuffer(GL_ARRAY_BUFFER, VBO);  // ï¿½ï¿½GL_ARRAY_BUFFER ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ó¶¨µï¿½ï¿½ï¿½ï¿½VBOï¿½Ï£ï¿½Ö®ï¿½ï¿½ï¿½ï¿½GL_ARRAY_BUFFER ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÏµÄ²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ VBOï¿½ï¿½
 
-        glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW); // ÍùGL_ARRAY_BUFFER»º³åÇøÌí¼Ó ¶¥µãÁÐ±í
+        glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW); // ï¿½ï¿½GL_ARRAY_BUFFERï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½
 
 
         unsigned int EBO;
-        glGenBuffers(1, &EBO);      // Éú³ÉEBO Element Buffer Object
+        glGenBuffers(1, &EBO);      // ï¿½ï¿½ï¿½ï¿½EBO Element Buffer Object
 
-        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO); // ½«GL_ELEMENT_ARRAY_BUFFER »º³åÇø °ó¶¨µ½Õâ¸öEBOÉÏ£¬Ö®ºóÔÙGL_ELEMENT_ARRAY_BUFFER Õâ¸ö»º³åÇøÉÏµÄ²Ù×÷¶¼½«×÷ÓÃÔÚÕâ¸ö VBOÉÏ
-        glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);     // ÍùGL_ELEMENT_ARRAY_BUFFER»º³åÇøÌí¼Ó ¶¥µãÁÐ±í
+        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO); // ï¿½ï¿½GL_ELEMENT_ARRAY_BUFFER ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ó¶¨µï¿½ï¿½ï¿½ï¿½EBOï¿½Ï£ï¿½Ö®ï¿½ï¿½ï¿½ï¿½GL_ELEMENT_ARRAY_BUFFER ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÏµÄ²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ VBOï¿½ï¿½
+        glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);     // ï¿½ï¿½GL_ELEMENT_ARRAY_BUFFERï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½
 
 
         //unsigned int vertexShader;
-        //vertexShader = glCreateShader(GL_VERTEX_SHADER);    // ´´½¨Ò»¸öshader, Ò»¸ö¶¥µãshader
+        //vertexShader = glCreateShader(GL_VERTEX_SHADER);    // ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½shader, Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½shader
 
-        //glShaderSource(vertexShader, 1, &vertexShaderSource, NULL); // Õâ¸öshader °ó¶¨Êý¾ÝÔ´
-        //glCompileShader(vertexShader);  // ±àÒëshader
+        //glShaderSource(vertexShader, 1, &vertexShaderSource, NULL); // ï¿½ï¿½ï¿½shader ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô´
+        //glCompileShader(vertexShader);  // ï¿½ï¿½ï¿½ï¿½shader
 
-        //// ÅÐ¶ÏshaderÊÇ·ñÕýÈ·
+        //// ï¿½Ð¶ï¿½shaderï¿½Ç·ï¿½ï¿½ï¿½È·
         //int  success;
         //char infoLog[512];
         //glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &success);
@@ -134,7 +136,7 @@ using namespace Render;
         //    std::cout << "ERROR::SHADER::VERTEX::COMPILATION_FAILED\n" << infoLog << std::endl;
         //}
 
-        //// Æ¬Ô´×ÅÉ«Æ÷
+        //// Æ¬Ô´ï¿½ï¿½É«ï¿½ï¿½
         //unsigned int fragmentShader;
         //fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
         //glShaderSource(fragmentShader, 1, &fragmentShaderSource, NULL);
@@ -142,11 +144,11 @@ using namespace Render;
 
 
         //unsigned int shaderProgram;
-        //shaderProgram = glCreateProgram();      // ´´½¨Ò»¸ö³ÌÐò£¬Ò»¸ö×ÅÉ«Æ÷´¦Àí³ÌÐò
+        //shaderProgram = glCreateProgram();      // ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½É«ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
-        //glAttachShader(shaderProgram, vertexShader);    // ¶¥µã×ÅÉ«Æ÷
+        //glAttachShader(shaderProgram, vertexShader);    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É«ï¿½ï¿½
         //glAttachShader(shaderProgram, fragmentShader);
-        //glLinkProgram(shaderProgram);   // °ó¶¨
+        //glLinkProgram(shaderProgram);   // ï¿½ï¿½
 
         //glGetProgramiv(shaderProgram, GL_LINK_STATUS, &success);
         //if (!success) {
@@ -154,36 +156,43 @@ using namespace Render;
         //    std::cout << "ERROR::SHADER::PROGRAM_FAILED\n" << infoLog << std::endl;
         //}
 
-        //glUseProgram(shaderProgram); // ¼¤»îÕâ¸ö³ÌÐò
+        //glUseProgram(shaderProgram); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
-        //glDeleteShader(vertexShader);   // ÒÑ¾­Á¬½Óµ½ program Àï£¬ÏÖÔÚ²»ÐèÒªÁË
+        //glDeleteShader(vertexShader);   // ï¿½Ñ¾ï¿½ï¿½ï¿½ï¿½Óµï¿½ program ï¿½ï£¬ï¿½ï¿½ï¿½Ú²ï¿½ï¿½ï¿½Òªï¿½ï¿½
         //glDeleteShader(fragmentShader);
 
         Shader* shader = new Shader("/asserts/shaders/shader.vs", "/asserts/shaders/shader.fs");
 
         Image* image = ImageLoad::LoadImage("/asserts/images/container.jpg");
 
-        // ¶¥µãÊôÐÔ
-        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);   // °ó¶¨¶¥µã 0¿ªÊ¼£¬ 3¸öÊý¾Ý£¬ floatÀàÐÍ£¬ ·Ç¹æ·¶»¯£¬ Êý¾ÝÖ®¼äµÄ¼ä¸ô£¬ ¶îÍâ²ÎÊý
-        // ÕâÊ±Ê¹ÓÃµÄÊý¾ÝÊÇ µ±Ç° GL_ARRAY_BUFFER »º³åÇøµÄÊý¾Ý
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);   // ï¿½ó¶¨¶ï¿½ï¿½ï¿½ 0ï¿½ï¿½Ê¼ï¿½ï¿½ 3ï¿½ï¿½ï¿½ï¿½ï¿½Ý£ï¿½ floatï¿½ï¿½ï¿½Í£ï¿½ ï¿½Ç¹æ·¶ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ö®ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+        // ï¿½ï¿½Ê±Ê¹ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ç° GL_ARRAY_BUFFER ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         glEnableVertexAttribArray(0);
 
-        // ÑÕÉ«ÊôÐÔ
+        // ï¿½ï¿½É«ï¿½ï¿½ï¿½ï¿½
         /*glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(3 * sizeof(float)));
         glEnableVertexAttribArray(1);*/
 
-        // UVÎÆÀí
+        // UVï¿½ï¿½ï¿½ï¿½
         glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
         glEnableVertexAttribArray(2);
 
         glm::mat4 view = glm::mat4(1.0f);
-        // ×¢Òâ£¬ÎÒÃÇ½«¾ØÕóÏòÎÒÃÇÒª½øÐÐÒÆ¶¯³¡¾°µÄ·´·½ÏòÒÆ¶¯¡£
+        // ×¢ï¿½â£¬ï¿½ï¿½ï¿½Ç½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½Æ¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ¶ï¿½ï¿½ï¿½
         view = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f));
 
         glm::mat4 projection = glm::mat4(1.0f);
         projection = glm::perspective(glm::radians(45.0f), 1280.0f / 720, 0.1f, 100.0f);
 
         long time = getCurrentTime();
+
+        const int num = 1000;
+        Vector3* v = new Vector3[num];
+        for (unsigned int i = 0; i < num; i++)
+        {
+            v[i] = Vector3((rand() % 3000 - 1500) * 1.0f / 1000.0f, (rand() % 3000 - 1500) * 1.0f / 1000.0f, (rand() % 3000 - 3000) * 1.0f / 1000.0f);
+        }
 
         while (!glfwWindowShouldClose(window)) {
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -204,18 +213,21 @@ using namespace Render;
 
 
             const int length = sizeof(vertices) / sizeof(vertices[0]);
-            float vertices2[length * 10];
+            float vertices2[length * num];
             float vertices3[length];
             unsigned int index = 0;
 
-            for (unsigned int i = 0; i < 10; i++)
+            float* vs = vertices2;
+
+            for (unsigned int i = 0; i < num; i++)
             {
-                transform->SetPosition(cubePositions[i]);
+                transform->SetPosition(v[i]);
                 transform->SetRotate(Vector3(1.02f, (float)glfwGetTime() * glm::radians(50.0f) + (i * 20), 1.0f));
                 shader->setMat4("model", transform->GetLocalMat4());
 
                 glm::mat4 mat4 = transform->GetLocalMat4();
 
+                float* v3s = vertices3;
                 for (unsigned int j = 0; j < length; j+=5)
                 {
                     glm::vec4 v4 = glm::vec4(vertices[j], vertices[j + 1], vertices[j + 2], 1);
@@ -228,13 +240,14 @@ using namespace Render;
                     vertices3[j + 4] = vertices[j + 4];
                 }
 
-                memcpy(vertices2 + index, vertices3, sizeof(vertices3));
-                index = index + length;
+                memcpy(vs, vertices3, sizeof(vertices3));
+                //index = index + length;
+                vs = vs + length;
                 // glDrawArrays(GL_TRIANGLES, 0, 36);
             }
-            glBufferData(GL_ARRAY_BUFFER, sizeof(vertices2), vertices2, GL_STREAM_DRAW); // ÍùGL_ARRAY_BUFFER»º³åÇøÌí¼Ó ¶¥µãÁÐ±í
+            glBufferData(GL_ARRAY_BUFFER, sizeof(vertices2), vertices2, GL_STREAM_DRAW); // ï¿½ï¿½GL_ARRAY_BUFFERï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½
 
-            glDrawArrays(GL_TRIANGLES, 0, 360);
+            glDrawArrays(GL_TRIANGLES, 0, 36 * num);
 
             image->use();
 
@@ -249,6 +262,7 @@ using namespace Render;
             long currTime = getCurrentTime();
             Core::Game::GetInstance()->Tick(currTime - time);
             time = currTime;
+            ShowFrameRate();
         }
 
 
@@ -264,3 +278,16 @@ using namespace Render;
         }
     }
 
+    void MainRender::ShowFrameRate()
+    {
+        char s[100] = { 0 };
+        frame++;
+        time = glfwGetTime();
+        if (time - timebase >= 1) {
+            printf("FPS:%4.2f \n",
+                frame * 1.0 / (time - timebase));
+            timebase = time;
+            frame = 0;
+        }
+    }
+}

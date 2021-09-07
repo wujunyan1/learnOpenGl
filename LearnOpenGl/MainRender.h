@@ -22,6 +22,9 @@ namespace Render
 		void processInput(GLFWwindow* window);
 
 	private:
+
+        int frame = 0, time = 0, timebase = 0;
+		void ShowFrameRate();
 	};
 }
 

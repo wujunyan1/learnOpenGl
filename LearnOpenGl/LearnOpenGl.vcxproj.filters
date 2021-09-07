@@ -25,6 +25,9 @@
     <Filter Include="core">
       <UniqueIdentifier>{975bc1ac-23e8-4708-9b30-7ec10c6279d8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ecs">
+      <UniqueIdentifier>{92e7bb2c-09b3-4dec-9008-50c9960f7919}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Main.h">
