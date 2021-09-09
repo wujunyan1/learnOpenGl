@@ -103,7 +103,7 @@ using namespace Render;
         transform->SetRotate(Vector3(1.02f, 0.02f, 1.0f));
         transform->SetScale(Vector3(1.0f, 1.0f, 1.0f));
 
-        Core::Camera carmera(Vector3(0.0f, 0.0f, 3.0f), Vector3(0.0f, 0.0f, 0.0f), Vector3(0.0f, 1.0f, 0.0f));
+        Core::Camera carmera = game->GetMainCamera(); // (Vector3(0.0f, 0.0f, 3.0f), Vector3(0.0f, 0.0f, 0.0f), Vector3(0.0f, 1.0f, 0.0f));
 
 
         unsigned int VAO;
@@ -283,6 +283,7 @@ using namespace Render;
         if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS) {
             glfwSetWindowShouldClose(window, true);
         }
+
     }
 
     void MainRender::ShowFrameRate()

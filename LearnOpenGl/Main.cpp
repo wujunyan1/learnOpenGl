@@ -4,6 +4,7 @@
 #include "MainRender.h"
 #include <direct.h>
 #include "FilePathManager.h"
+#include "Game.h"
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
@@ -58,15 +59,34 @@ int main(int argc, char* argv[])
 
     glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
 
+    // glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);    // 鼠标箭头隐藏
+
+    glfwSetCursorEnterCallback(window, mouse_enter_callback);
+    glfwSetCursorPosCallback(window, mouse_pos_callback);
+
+    Core::Game* game = Core::Game::GetInstance();
     Render::MainRender* render = new Render::MainRender();
+
 
     render->renderLoop(window);
 
+
     delete render;
+    Core::Game::DestroyInstance();
 
     glfwTerminate();
 
     return 0;
+}
+
+void mouse_enter_callback(GLFWwindow* window, int index)
+{
+
+}
+
+void mouse_pos_callback(GLFWwindow* window, double x, double y)
+{
+
 }
 
 // 窗口大小发生变化

@@ -11,15 +11,16 @@ namespace Core
 	{
 	public:
 		Camera(Vector3 position, Vector3 target, Vector3 worldUp);
+		Camera(Vector3 position, float yaw, float pitch, Vector3 worldUp);
 		~Camera();
 
 		glm::mat4 GetViewMatrix();
 
 	private:
-		glm::vec3 Position;
-		glm::vec3 Forward;
-		glm::vec3 Right;
-		glm::vec3 Up;
-		glm::vec3 WorldUp;
+		glm::vec3 position;
+		glm::vec3 forward;
+		glm::vec3 right;
+		glm::vec3 up;
+		glm::vec3 worldUp;
 	};
 }
