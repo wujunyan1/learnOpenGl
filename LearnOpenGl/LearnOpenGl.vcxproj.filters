@@ -28,6 +28,9 @@
     <Filter Include="ecs">
       <UniqueIdentifier>{92e7bb2c-09b3-4dec-9008-50c9960f7919}</UniqueIdentifier>
     </Filter>
+    <Filter Include="math">
+      <UniqueIdentifier>{f7dedc3b-cfff-4a9c-97f0-439631b33145}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Main.h">
@@ -60,9 +63,6 @@
     <ClInclude Include="Transform.h">
       <Filter>core</Filter>
     </ClInclude>
-    <ClInclude Include="Vector3.h">
-      <Filter>core</Filter>
-    </ClInclude>
     <ClInclude Include="Component.h">
       <Filter>core</Filter>
     </ClInclude>
@@ -71,6 +71,24 @@
     </ClInclude>
     <ClInclude Include="Camera.h">
       <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Quaternion.h">
+      <Filter>math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Mat4.h">
+      <Filter>math</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector3.h">
+      <Filter>math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Vector4.h">
+      <Filter>math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Vector2.h">
+      <Filter>math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\KolaMath.h">
+      <Filter>math</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -98,9 +116,6 @@
     <ClCompile Include="Transform.cpp">
       <Filter>core</Filter>
     </ClCompile>
-    <ClCompile Include="Vector3.cpp">
-      <Filter>core</Filter>
-    </ClCompile>
     <ClCompile Include="Component.cpp">
       <Filter>core</Filter>
     </ClCompile>
@@ -109,6 +124,24 @@
     </ClCompile>
     <ClCompile Include="Camera.cpp">
       <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\Quaternion.cpp">
+      <Filter>math</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\Mat4.cpp">
+      <Filter>math</Filter>
+    </ClCompile>
+    <ClCompile Include="Vector3.cpp">
+      <Filter>math</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\Vector4.cpp">
+      <Filter>math</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\Vector2.cpp">
+      <Filter>math</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\KolaMath.cpp">
+      <Filter>math</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
