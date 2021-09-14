@@ -174,6 +174,15 @@ public:
 		return vecLen;
 	}
 
+	void normalize()
+	{
+		float l = len();
+		x /= l;
+		y /= l;
+		z /= l;
+		return;
+	}
+
 public:
 	/*float x;
 	float y;

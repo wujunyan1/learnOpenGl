@@ -31,6 +31,8 @@ namespace Core
 			localMat4 = glm::mat4(1.0f);
 			worldMat4 = glm::mat4(1.0f);
 
+
+
 			matChanged = false;
 		}
 
@@ -79,6 +81,10 @@ namespace Core
 		Vector3 position;
 		Vector3 scale;
 		Vector3 rotate;
+
+		Vector3 forword;
+		Vector3 right;
+		Vector3 up;
 
 		glm::mat4 localMat4;
 		glm::mat4 worldMat4;
