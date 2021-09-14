@@ -14,16 +14,16 @@ company:	supernano
 
 namespace LORD
 {
-	class LORD_CORE_API Vector4
+	class Vector4
 	{
 	public:
 		union
 		{
 			struct 
 			{
-				Real x, y, z, w;
+				float x, y, z, w;
 			};
-			Real m[4];
+			float m[4];
 		};
 
 		static const Vector4 ZERO;
@@ -38,7 +38,7 @@ namespace LORD
 		static const Vector4 XYZ_MASK;				//!< Vec4(0xffffffff, 0xffffffff, 0xffffffff, 0)
 		static const Vector4 ABS_MASK;				//!< Vec4(0x7fffffff, 0xffffffff, 0xffffffff, 0)
 		static const Vector4 SIGN_MASK;
-		static ui32	 OP_COUNT;
+		static unsigned int	 OP_COUNT;
 
 	public:
 		inline Vector4()
@@ -46,28 +46,27 @@ namespace LORD
 			// do nothing
 		}
 
-		inline Vector4(const Real _x, const Real _y, const Real _z, const Real _w)
+		inline Vector4(const float _x, const float _y, const float _z, const float _w)
 			: x(_x)
 			, y(_y)
 			, z(_z)
 			, w(_w)
 		{
-			ADD_MATH_OP_COUNT
+			
 		}
 
-		inline Vector4(const Real value)
+		inline Vector4(const float value)
 		{
-			ADD_MATH_OP_COUNT
 			set(value);
 		}
 
-		inline Vector4(const Vector3& vec3, Real _w)
+		inline Vector4(const Vector3& vec3, float _w)
 			: x(vec3.x)
 			, y(vec3.y)
 			, z(vec3.z)
 			, w(_w)
 		{
-			ADD_MATH_OP_COUNT
+			
 		}
 
 		inline Vector4(const Vector4& vec)
@@ -76,18 +75,16 @@ namespace LORD
 			, z(vec.z)
 			, w(vec.w)
 		{
-			ADD_MATH_OP_COUNT
+			
 		}
 
 		inline operator Vector2 ()
 		{
-			ADD_MATH_OP_COUNT
 			return Vector2(x, y);
 		}
 
 		inline operator const Vector2 () const
 		{
-			ADD_MATH_OP_COUNT
 			return Vector2(x, y);
 		}
 

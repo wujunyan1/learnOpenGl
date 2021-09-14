@@ -2,8 +2,11 @@
 #define MATH_MAT4_H
 
 
-#include "../Vector3.h"
+#include "Vector3.h"
+#include "Quaternion.h"
 // #include "math/Vec4.h"
+
+using namespace Math;
 
 class Mat4
 {
@@ -253,7 +256,7 @@ public:
      * @param angle The angle (in radians).
      * @param dst A matrix to store the result in.
      */
-    static void createRotation(const Vec3& axis, float angle, Mat4* dst);
+    static void createRotation(const Vector3& axis, float angle, Mat4* dst);
 
     /**
      * Creates a matrix describing a rotation around the x-axis.
@@ -285,7 +288,7 @@ public:
      * @param translation The translation.
      * @param dst A matrix to store the result in.
      */
-    static void createTranslation(const Vec3& translation, Mat4* dst);
+    static void createTranslation(const Vector3& translation, Mat4* dst);
 
     /**
      * Creates a translation matrix.
@@ -335,7 +338,7 @@ public:
      * @param rotation The rotation.
      * @param translation The translation.
      */
-    bool decompose(Vec3* scale, Quaternion* rotation, Vec3* translation) const;
+    bool decompose(Vector3* scale, Quaternion* rotation, Vector3* translation) const;
 
     /**
      * Computes the determinant of this matrix.
@@ -354,7 +357,7 @@ public:
      *
      * @param scale A vector to receive the scale.
      */
-    void getScale(Vec3* scale) const;
+    void getScale(Vector3* scale) const;
 
     /**
      * Gets the rotational component of this matrix in the specified quaternion.
@@ -370,49 +373,49 @@ public:
      *
      * @param translation A vector to receive the translation.
      */
-    void getTranslation(Vec3* translation) const;
+    void getTranslation(Vector3* translation) const;
 
     /**
      * Gets the up vector of this matrix.
      *
      * @param dst The destination vector.
      */
-    void getUpVector(Vec3* dst) const;
+    void getUpVector(Vector3* dst) const;
 
     /**
      * Gets the down vector of this matrix.
      *
      * @param dst The destination vector.
      */
-    void getDownVector(Vec3* dst) const;
+    void getDownVector(Vector3* dst) const;
 
     /**
      * Gets the left vector of this matrix.
      *
      * @param dst The destination vector.
      */
-    void getLeftVector(Vec3* dst) const;
+    void getLeftVector(Vector3* dst) const;
 
     /**
      * Gets the right vector of this matrix.
      *
      * @param dst The destination vector.
      */
-    void getRightVector(Vec3* dst) const;
+    void getRightVector(Vector3* dst) const;
 
     /**
      * Gets the forward vector of this matrix.
      *
      * @param dst The destination vector.
      */
-    void getForwardVector(Vec3* dst) const;
+    void getForwardVector(Vector3* dst) const;
 
     /**
      * Gets the backward vector of this matrix.
      *
      * @param dst The destination vector.
      */
-    void getBackVector(Vec3* dst) const;
+    void getBackVector(Vector3* dst) const;
 
     /**
      * Inverts this matrix.
@@ -507,7 +510,7 @@ public:
      * @param axis The axis to rotate about.
      * @param angle The angle (in radians).
      */
-    void rotate(const Vec3& axis, float angle);
+    void rotate(const Vector3& axis, float angle);
 
     /**
      * Post-multiplies this matrix by the matrix corresponding to the specified
@@ -517,7 +520,7 @@ public:
      * @param angle The angle (in radians).
      * @param dst A matrix to store the result in.
      */
-    void rotate(const Vec3& axis, float angle, Mat4* dst) const;
+    void rotate(const Vector3& axis, float angle, Mat4* dst) const;
 
     /**
      * Post-multiplies this matrix by the matrix corresponding to the
@@ -614,7 +617,7 @@ public:
      *
      * @param s The scale values along the x, y and z axes.
      */
-    void scale(const Vec3& s);
+    void scale(const Vector3& s);
 
     /**
      * Post-multiplies this matrix by the matrix corresponding to the
@@ -623,7 +626,7 @@ public:
      * @param s The scale values along the x, y and z axes.
      * @param dst A matrix to store the result in.
      */
-    void scale(const Vec3& s, Mat4* dst) const;
+    void scale(const Vector3& s, Mat4* dst) const;
 
     /**
      * Sets the values of this matrix.
@@ -695,7 +698,7 @@ public:
      *
      * @param point The point to transform and also a vector to hold the result in.
      */
-    inline void transformPoint(Vec3* point) const { GP_ASSERT(point); transformVector(point->x, point->y, point->z, 1.0f, point); }
+    inline void transformPoint(Vector3* point) const { transformVector(point->x, point->y, point->z, 1.0f, point); }
 
     /**
      * Transforms the specified point by this matrix, and stores
@@ -704,7 +707,7 @@ public:
      * @param point The point to transform.
      * @param dst A vector to store the transformed point in.
      */
-    inline void transformPoint(const Vec3& point, Vec3* dst) const { GP_ASSERT(dst); transformVector(point.x, point.y, point.z, 1.0f, dst); }
+    inline void transformPoint(const Vector3& point, Vector3* dst) const { transformVector(point.x, point.y, point.z, 1.0f, dst); }
 
     /**
      * Transforms the specified vector by this matrix by
@@ -714,7 +717,7 @@ public:
      *
      * @param vector The vector to transform and also a vector to hold the result in.
      */
-    void transformVector(Vec3* vector) const;
+    void transformVector(Vector3* vector) const;
 
     /**
      * Transforms the specified vector by this matrix by
@@ -724,7 +727,7 @@ public:
      * @param vector The vector to transform.
      * @param dst A vector to store the transformed vector in.
      */
-    void transformVector(const Vec3& vector, Vec3* dst) const;
+    void transformVector(const Vector3& vector, Vector3* dst) const;
 
     /**
      * Transforms the specified vector by this matrix.
@@ -735,7 +738,7 @@ public:
      * @param w The vector w-coordinate to transform by.
      * @param dst A vector to store the transformed point in.
      */
-    void transformVector(float x, float y, float z, float w, Vec3* dst) const;
+    void transformVector(float x, float y, float z, float w, Vector3* dst) const;
 
     /**
      * Transforms the specified vector by this matrix.
@@ -781,7 +784,7 @@ public:
      *
      * @param t The translation values along the x, y and z axes.
      */
-    void translate(const Vec3& t);
+    void translate(const Vector3& t);
 
     /**
      * Post-multiplies this matrix by the matrix corresponding to the
@@ -790,7 +793,7 @@ public:
      * @param t The translation values along the x, y and z axes.
      * @param dst A matrix to store the result in.
      */
-    void translate(const Vec3& t, Mat4* dst) const;
+    void translate(const Vector3& t, Mat4* dst) const;
 
     /**
      * Transposes this matrix.
@@ -872,8 +875,8 @@ public:
 
 private:
 
-    static void createBillboardHelper(const Vec3& objectPosition, const Vec3& cameraPosition,
-                                      const Vec3& cameraUpVector, const Vec3* cameraForwardVector,
+    static void createBillboardHelper(const Vector3& objectPosition, const Vector3& cameraPosition,
+                                      const Vector3& cameraUpVector, const Vector3* cameraForwardVector,
                                       Mat4* dst);
 };
 
@@ -886,7 +889,7 @@ private:
  * @param m The matrix to transform by.
  * @return This vector, after the transformation occurs.
  */
-inline Vec3& operator*=(Vec3& v, const Mat4& m);
+inline VeVector3c3& operator*=(Vector3& v, const Mat4& m);
 
 /**
  * Transforms the given vector by the given matrix.
@@ -897,7 +900,7 @@ inline Vec3& operator*=(Vec3& v, const Mat4& m);
  * @param v The vector to transform.
  * @return The resulting transformed vector.
  */
-inline Vec3 operator*(const Mat4& m, const Vec3& v);
+inline Vector3 operator*(const Mat4& m, const Vector3& v);
 
 /**
  * Transforms the given vector by the given matrix.
@@ -920,12 +923,5 @@ inline Vec4& operator*=(Vec4& v, const Mat4& m);
  * @return The resulting transformed vector.
  */
 inline Vec4 operator*(const Mat4& m, const Vec4& v);
-
-NS_CC_MATH_END
-/**
- end of base group
- @}
- */
-#include "math/Mat4.inl"
 
 #endif // MATH_MAT4_H

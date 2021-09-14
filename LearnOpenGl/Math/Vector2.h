@@ -10,12 +10,10 @@ company:	supernano
 #ifndef __LORD_VEC2_H__
 #define __LORD_VEC2_H__
 
-#include "LordMath.h"
-#include "Util/AssertX.h"
 
 namespace LORD
 {
-	class LORD_CORE_API Vector2
+	class Vector2
 	{
 	public:
 
@@ -23,10 +21,10 @@ namespace LORD
 		{
 			struct 
 			{
-				Real x, y;
+				float x, y;
 			};
 
-			Real m[2];
+			float m[2];
 		};
 
 		static const Vector2 ZERO;				//!< Vec2(0, 0)
@@ -36,7 +34,6 @@ namespace LORD
 		static const Vector2 NEG_UNIT_X;		//!< Vec2(-1, 0)
 		static const Vector2 NEG_UNIT_Y;		//!< Vec2(0, -1)
 		static const Vector2 INVALID;			//!< Vec2(Math::MAX_REAL, Math::MAX_REAL)
-		static ui32	 OP_COUNT;
 
 	public:
 		inline Vector2()
@@ -44,115 +41,98 @@ namespace LORD
 			// do nothing
 		}
 
-		inline Vector2(const Real _x, const Real _y)
+		inline Vector2(const float _x, const float _y)
 			: x(_x)
 			, y(_y)
 		{
-			ADD_MATH_OP_COUNT
+			
 		}
 
 		inline Vector2(const Vector2 &vec)
 			: x(vec.x)
 			, y(vec.y)
 		{
-			ADD_MATH_OP_COUNT
 		}
 
 		inline Vector2& operator= (const Vector2& rhs)
 		{
-			ADD_MATH_OP_COUNT
 			x = rhs.x;
 			y = rhs.y;
 			return *this;
 		}
 
-		inline Real* ptr()
+		inline float* ptr()
 		{
-			ADD_MATH_OP_COUNT
 			return &x;
 		}
 
-		inline const Real* ptr() const
+		inline const float* ptr() const
 		{
-			ADD_MATH_OP_COUNT	
 			return &x;
 		}
 
 		inline const Vector2 operator+ ()
 		{
-			ADD_MATH_OP_COUNT
 			return *this;
 		}
 
 		inline Vector2 operator- () const
 		{
-			ADD_MATH_OP_COUNT
 			return Vector2(-x, -y);
 		}
 
 		inline bool operator == (const Vector2& rhs) const
 		{
-			ADD_MATH_OP_COUNT
 			return (x==rhs.x && y==rhs.y);
 		}
 
 		inline bool operator != (const Vector2& rhs) const
 		{
-			ADD_MATH_OP_COUNT
 			return (x!=rhs.x || y!=rhs.y);
 		}
 
 		inline Vector2 operator + (const Vector2& rhs) const
 		{
-			ADD_MATH_OP_COUNT
 			return Vector2(x+rhs.x, y+rhs.y);
 		}
 
 		inline Vector2 operator - (const Vector2& rhs) const
 		{
-			ADD_MATH_OP_COUNT
 			return Vector2(x-rhs.x, y-rhs.y);
 		}
 
 		inline Vector2 operator * (const Vector2& rhs) const
 		{
-			ADD_MATH_OP_COUNT
 			return Vector2(x*rhs.x, y*rhs.y);
 		}
 
-		inline Vector2 operator * (const Real f) const
+		inline Vector2 operator * (const float f) const
 		{
-			ADD_MATH_OP_COUNT
 			return Vector2(x*f, y*f);
 		}
 
-		inline friend Vector2 operator * (const Real f, const Vector2& rkVec)
+		inline friend Vector2 operator * (const float f, const Vector2& rkVec)
 		{
-			ADD_MATH_OP_COUNT
 			return Vector2(f*rkVec.x, f*rkVec.y);
 		}
 
-		inline Vector2 operator / (const Real f) const
+		inline Vector2 operator / (const float f) const
 		{
-			ADD_MATH_OP_COUNT
 			return Vector2(x/f, y/f);
 		}
 
 		inline Vector2 operator / (const Vector2& rhs) const
 		{
-			ADD_MATH_OP_COUNT
 			return Vector2(x/rhs.x, y/rhs.y);
 		}
 
-		inline friend Vector2 operator / (const Real f, const Vector2& rkVec)
+		inline friend Vector2 operator / (const float f, const Vector2& rkVec)
 		{
-			ADD_MATH_OP_COUNT
 			return Vector2(f/rkVec.x, f/rkVec.y);
 		}
 
 		inline Vector2& operator+= (const Vector2& rhs)
 		{
-			ADD_MATH_OP_COUNT
 			x += rhs.x;
 			y += rhs.y;
 			return *this;
@@ -160,139 +140,117 @@ namespace LORD
 
 		inline Vector2& operator-= (const Vector2& rhs)
 		{
-			ADD_MATH_OP_COUNT
 			x -= rhs.x;
 			y -= rhs.y;
 			return *this;
 		}
 
-		inline Vector2& operator*= (const Real value)
+		inline Vector2& operator*= (const float value)
 		{
-			ADD_MATH_OP_COUNT
 			x *= value;
 			y *= value;
 			return *this;
 		}
 
-		inline Vector2& operator/= (const Real value)
+		inline Vector2& operator/= (const float value)
 		{
-			ADD_MATH_OP_COUNT
 			x /= value;
 			y /= value;
 			return *this;
 		}
 
-		inline Real& operator[] (int index)
+		inline float& operator[] (int index)
 		{
-			ADD_MATH_OP_COUNT
-			LordAssertX(index>=0 && index<2, "Access out of bounds");
 			return m[index];
 		}
 
-		inline const Real& operator[] (int index) const
+		inline const float& operator[] (int index) const
 		{
-			ADD_MATH_OP_COUNT
-			LordAssertX(index>=0 && index<2, "Access out of bounds");
 			return m[index];
 		}
 
 		inline bool operator< (const Vector2& rhs) const
 		{
-			ADD_MATH_OP_COUNT
 			return (x<rhs.x && y<rhs.y);
 		}
 
 		inline bool operator<=(const Vector2& rhs) const
 		{
-			ADD_MATH_OP_COUNT
 			return (x<=rhs.x && y<=rhs.y);
 		}
 
 		inline bool operator> (const Vector2& rhs) const
 		{
-			ADD_MATH_OP_COUNT
 			return (x>rhs.x && y>rhs.y);
 		}
 
 		inline bool operator >= (const Vector2& rhs) const
 		{
-			ADD_MATH_OP_COUNT
 			return (x>=rhs.x && y>=rhs.y);
 		}
 
 		inline void zero()
 		{
-			ADD_MATH_OP_COUNT
 			x = 0.0;
 			y = 0.0;
 		}
 
 		inline void one()
 		{
-			ADD_MATH_OP_COUNT
 			x = 1.0;
 			y = 1.0;
 		}
 
 		inline void invalid()
 		{
-			ADD_MATH_OP_COUNT
 			*this = INVALID;
 		}
 
-		inline void set(Real _x, Real _y)
+		inline void set(float _x, float _y)
 		{
-			ADD_MATH_OP_COUNT
 			x = _x;
 			y = _y;
 		}
 
-		inline void set(Real *p)
+		inline void set(float *p)
 		{
-			ADD_MATH_OP_COUNT
 			this->x = p[0];
 			this->y = p[1];
 		}
 
-		inline Real dot(const Vector2& rhs) const
+		inline float dot(const Vector2& rhs) const
 		{
-			ADD_MATH_OP_COUNT
 			return (x * rhs.x + y * rhs.y);
 		}
 
-		inline Real cross(const Vector2& rhs) const
+		inline float cross(const Vector2& rhs) const
 		{
-			ADD_MATH_OP_COUNT
 			return (x * rhs.y - y * rhs.x);
 		}
 
 		inline void inverse()
 		{
-			ADD_MATH_OP_COUNT
 			x = 1.0f / x;
 			y = 1.0f / y;
 		}
 
 		inline void sqrt()
 		{
-			ADD_MATH_OP_COUNT
 			x = Math::Sqrt(x);
 			y = Math::Sqrt(y);
 		}
 
 		inline void invSqrt()
 		{
-			ADD_MATH_OP_COUNT
 			x = 1.0f / Math::Sqrt(x);
 			y = 1.0f / Math::Sqrt(y);
 		}
 
-		inline Real len() const
+		inline float len() const
 		{
-			ADD_MATH_OP_COUNT
-			Real vecLen;
+			float vecLen;
 
-			Real sum = x*x + y*y;
+			float sum = x*x + y*y;
 			vecLen = Math::Sqrt(sum);
 
 			return vecLen;
