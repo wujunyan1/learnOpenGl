@@ -31,6 +31,9 @@
     <Filter Include="math">
       <UniqueIdentifier>{f7dedc3b-cfff-4a9c-97f0-439631b33145}</UniqueIdentifier>
     </Filter>
+    <Filter Include="base">
+      <UniqueIdentifier>{ddec5c72-03e3-4439-ba78-f1c5a19567f4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Main.h">
@@ -89,6 +92,12 @@
     </ClInclude>
     <ClInclude Include="Math\KolaMath.h">
       <Filter>math</Filter>
+    </ClInclude>
+    <ClInclude Include="base\TypeDef.h">
+      <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\CoreDef.h">
+      <Filter>base</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -1,9 +1,7 @@
-#include "Core.h"
-#include "Math/LordMath.h"
+#include "KolaMath.h"
 
-namespace LORD
+namespace KOLA
 {
-
 	namespace Math
 	{
 		// predefined specific
@@ -23,8 +21,8 @@ namespace LORD
 		const Real LOWEPSILON				= (Real)(1e-04);
 		const Real POS_INFINITY				= std::numeric_limits<Real>::infinity();
 		const Real NEG_INFINITY				= -std::numeric_limits<Real>::infinity();
-		const Real LN2						= std::log(2.0f);
-		const Real LN10						= std::log(10.0f);
+		const Real LN2						= log(2.0f);
+		const Real LN10						= log(10.0f);
 		const Real INV_LN2					= 1.0f / LN2;
 		const Real INV_LN10					= 1.0f / LN10;
 		const Real DEG2RAD					= (Real)0.01745329;
@@ -77,8 +75,6 @@ namespace LORD
 		{
 			if (g_sintab != NULL)
 				return;
-
-			LordAssertX(g_sintab == NULL, "Math lib have inited");
 
 			g_sintab = (float*)LordMalloc(sizeof(float) * (SINCOSTABSZ));
 		
