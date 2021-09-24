@@ -11,6 +11,7 @@
 #include "Camera.h"
 
 using namespace Render;
+using namespace Core;
 
     float vertices[] = {
     -0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
@@ -194,7 +195,7 @@ using namespace Render;
 
         long time = getCurrentTime();
 
-        const int num = 1000;
+        const int num = 10;
         Vector3* v = new Vector3[num];
         for (unsigned int i = 0; i < num; i++)
         {

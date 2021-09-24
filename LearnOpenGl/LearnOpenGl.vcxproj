@@ -151,42 +151,32 @@
     <ClInclude Include="base\TypeDef.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Component.h" />
+    <ClInclude Include="Core.h" />
     <ClInclude Include="FilePathManager.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Image.h" />
     <ClInclude Include="ImageLoad.h" />
     <ClInclude Include="Main.h" />
     <ClInclude Include="MainRender.h" />
-    <ClInclude Include="Math\KolaMath.h" />
-    <ClInclude Include="Math\Mat4.h" />
-    <ClInclude Include="Math\Quaternion.h" />
-    <ClInclude Include="Math\Vector2.h" />
-    <ClInclude Include="Math\Vector4.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="stb_image.h" />
     <ClInclude Include="Transform.h" />
-    <ClInclude Include="Vector3.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Component.cpp" />
+    <ClCompile Include="Core.cpp" />
     <ClCompile Include="FilePathManager.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Image.cpp" />
     <ClCompile Include="ImageLoad.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MainRender.cpp" />
-    <ClCompile Include="Math\KolaMath.cpp" />
-    <ClCompile Include="Math\Mat4.cpp" />
-    <ClCompile Include="Math\Quaternion.cpp" />
-    <ClCompile Include="Math\Vector2.cpp" />
-    <ClCompile Include="Math\Vector4.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="Transform.cpp" />
-    <ClCompile Include="Vector3.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="DefaultShader.glsl" />
