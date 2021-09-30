@@ -84,6 +84,9 @@
     <ClInclude Include="Core.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="Input.h">
+      <Filter>core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -121,6 +124,9 @@
     </ClCompile>
     <ClCompile Include="Core.cpp">
       <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Input.cpp">
+      <Filter>core</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
