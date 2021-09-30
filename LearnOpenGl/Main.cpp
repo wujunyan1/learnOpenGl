@@ -67,6 +67,7 @@ int main(int argc, char* argv[])
 
     Core::Game* game = Core::Game::GetInstance();
     Render::MainRender* render = new Render::MainRender();
+    game->SetWindow(window);
 
 
     render->renderLoop(window);

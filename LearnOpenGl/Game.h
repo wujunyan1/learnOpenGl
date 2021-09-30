@@ -25,8 +25,11 @@ namespace Core {
 
 		Camera GetMainCamera() { return mainCamera; }
 
+		void SetWindow(GLFWwindow* w) { window = w; }
+		static GLFWwindow* GetWindow() { return window; }
 	private:
 		static Game* instance;
+		static GLFWwindow* window;
 
 		Game() 
 		{

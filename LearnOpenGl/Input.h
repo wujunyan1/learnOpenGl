@@ -2,6 +2,7 @@
 
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
+#include "Game.h"
 
 namespace Core {
 	class Input
@@ -25,7 +26,7 @@ namespace Core {
 			NUM_6 = GLFW_KEY_6,
 			NUM_7 = GLFW_KEY_7,
 			NUM_8 = GLFW_KEY_8,
-			NUM_8 = GLFW_KEY_9,
+			NUM_9 = GLFW_KEY_9,
 			SEMICOLON = GLFW_KEY_SEMICOLON,
 			EQUAL = GLFW_KEY_EQUAL,
 			A = GLFW_KEY_A,
@@ -136,7 +137,33 @@ namespace Core {
 
 		bool isKeyDown(Key key) 
 		{
-			return false;
+			return glfwGetKey(Game::GetWindow(), (int)key) == GLFW_PRESS;
+		}
+
+		bool isKeyUp(Key key)
+		{
+			return glfwGetKey(Game::GetWindow(), (int)key) == GLFW_RELEASE;
+		}
+
+		bool isKeyTouch(Key key)
+		{
+			return glfwGetKey(Game::GetWindow(), (int)key) == GLFW_REPEAT;
+		}
+
+
+		bool isMouseLeftDown(Key key)
+		{
+			return glfwGetKey(Game::GetWindow(), (int)key) == GLFW_PRESS;
+		}
+
+		bool isMouseLeftUp(Key key)
+		{
+			return glfwGetKey(Game::GetWindow(), (int)key) == GLFW_RELEASE;
+		}
+
+		bool isKeyTouch(Key key)
+		{
+			return glfwGetKey(Game::GetWindow(), (int)key) == GLFW_REPEAT;
 		}
 	};
 }
