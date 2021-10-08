@@ -64,6 +64,8 @@ int main(int argc, char* argv[])
 
     glfwSetCursorEnterCallback(window, mouse_enter_callback);
     glfwSetCursorPosCallback(window, mouse_pos_callback);
+    glfwSetMouseButtonCallback(window, mouse_button_callback);
+    glfwSetKeyCallback(window, key_callback);
 
     Core::Game* game = Core::Game::GetInstance();
     Render::MainRender* render = new Render::MainRender();
@@ -81,6 +83,20 @@ int main(int argc, char* argv[])
     return 0;
 }
 
+void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
+{
+    if (action != GLFW_PRESS)
+        return;
+    switch (key)
+    {
+    case GLFW_KEY_ESCAPE:
+        glfwSetWindowShouldClose(window, GL_TRUE);
+        break;
+    default:
+        break;
+    }
+}
+
 void mouse_enter_callback(GLFWwindow* window, int index)
 {
 
@@ -89,6 +105,22 @@ void mouse_enter_callback(GLFWwindow* window, int index)
 void mouse_pos_callback(GLFWwindow* window, double x, double y)
 {
 
+}
+
+void mouse_button_callback(GLFWwindow* window, int button, int action, int mods)
+{
+    if (action == GLFW_PRESS) switch (button)
+    {
+    case GLFW_MOUSE_BUTTON_LEFT:
+        break;
+    case GLFW_MOUSE_BUTTON_MIDDLE:
+        break;
+    case GLFW_MOUSE_BUTTON_RIGHT:
+        break;
+    default:
+        return;
+    }
+    return;
 }
 
 // 窗口大小发生变化

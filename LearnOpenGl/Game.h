@@ -1,6 +1,7 @@
 #pragma once
 #include "Camera.h"
-
+#include <GL/glew.h>
+#include <GLFW/glfw3.h>
 
 namespace Core {
 	class Game

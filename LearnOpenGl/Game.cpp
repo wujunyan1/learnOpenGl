@@ -4,6 +4,7 @@
 using namespace Core;
 
 Game* Game::instance = nullptr;
+GLFWwindow* Game::window = nullptr;
 
 void Game::Tick(long time)
 {

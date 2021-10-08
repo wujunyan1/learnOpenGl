@@ -161,7 +161,7 @@ namespace Core {
 			return glfwGetKey(Game::GetWindow(), (int)key) == GLFW_RELEASE;
 		}
 
-		bool isKeyTouch(Key key)
+		bool isMounseTouch(Key key)
 		{
 			return glfwGetKey(Game::GetWindow(), (int)key) == GLFW_REPEAT;
 		}
