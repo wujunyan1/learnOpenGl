@@ -1,10 +1,21 @@
 #include "Component.h"
+#include "Object.h"
+
 using namespace Core;
 
-void Component::init()
+void Component::Init()
 {
 }
 
-void Component::onDestroy()
+void Component::OnDestroy()
 {
+}
+
+
+void Component::setObject(Object* o) {
+	object = o;
+}
+
+Object* Component::getObject() {
+	return object;
 }

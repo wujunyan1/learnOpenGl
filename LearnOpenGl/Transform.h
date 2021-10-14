@@ -4,24 +4,13 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
+#include <vector>
 
 namespace Core 
 {
 	class Transform :public Component
 	{
 	public:
-
-		struct TransfromData
-		{
-			Vector3 position;
-			Vector3 scale;
-			Vector3 rotate;
-
-			glm::mat4 localMat4;
-			glm::mat4 worldMat4;
-
-			bool matChanged;
-		};
 
 		Transform() {
 			position = Vector3();
@@ -34,6 +23,8 @@ namespace Core
 
 
 			matChanged = false;
+
+			children = NULL;
 		}
 
 		void SetPosition(Vector3 v) {
@@ -65,6 +56,21 @@ namespace Core
 			return worldMat4;
 		}
 
+		void AddChild(Transform* child) {
+			if (children == NULL) {
+				children = new std::vector<Transform*>();
+			}
+			children->push_back(child);
+		}
+
+		Transform* GetChildByIndex(int index) {
+			return children->at(index);
+		}
+
+		std::vector<Transform*>* getChildren() {
+			return children;
+		}
+
 	private:
 
 		void UpdateLocalMat4() {
@@ -78,18 +84,20 @@ namespace Core
 		}
 
 	private:
-		Vector3 position;
-		Vector3 scale;
-		Vector3 rotate;
+		Vector3 position = Vector3();
+		Vector3 scale = Vector3();
+		Vector3 rotate = Vector3();
 
-		Vector3 forword;
-		Vector3 right;
-		Vector3 up;
+		Vector3 forword = Vector3();
+		Vector3 right = Vector3();
+		Vector3 up = Vector3();
 
-		glm::mat4 localMat4;
-		glm::mat4 worldMat4;
+		Mat4 localMat4 = Mat4();
+		Mat4 worldMat4 = Mat4();
 
-		bool matChanged;
+		bool matChanged = false;
+
+		std::vector<Transform*>* children;
 	};
 
 

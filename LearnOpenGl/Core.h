@@ -9,5 +9,6 @@
 namespace Core 
 {
 	typedef glm::vec3			Vector3;
+	typedef glm::mat4			Mat4;
 }
 
