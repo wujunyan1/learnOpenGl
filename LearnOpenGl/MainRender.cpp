@@ -104,6 +104,9 @@ using namespace Core;
         transform->SetRotate(Vector3(1.02f, 0.02f, 1.0f));
         transform->SetScale(Vector3(1.0f, 1.0f, 1.0f));
 
+        Core::Camera* camera = o->AddComponent<Core::Camera>();
+        game->SetMainCamera(*camera);
+
         Core::Camera carmera = game->GetMainCamera(); // (Vector3(0.0f, 0.0f, 3.0f), Vector3(0.0f, 0.0f, 0.0f), Vector3(0.0f, 1.0f, 0.0f));
 
 

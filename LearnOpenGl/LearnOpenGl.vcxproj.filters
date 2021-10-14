@@ -34,6 +34,9 @@
     <Filter Include="base">
       <UniqueIdentifier>{ddec5c72-03e3-4439-ba78-f1c5a19567f4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="components">
+      <UniqueIdentifier>{7439c195-db36-48da-9576-b93f4658ed82}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Main.h">
@@ -87,6 +90,9 @@
     <ClInclude Include="Input.h">
       <Filter>core</Filter>
     </ClInclude>
+    <ClInclude Include="CameraMove.h">
+      <Filter>components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -127,6 +133,9 @@
     </ClCompile>
     <ClCompile Include="Input.cpp">
       <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraMove.cpp">
+      <Filter>components</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

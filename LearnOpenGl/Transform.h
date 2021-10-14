@@ -39,6 +39,9 @@ namespace Core
 
 		void SetRotate(Vector3 v) {
 			rotate = v;
+
+
+
 			matChanged = true;
 		}
 

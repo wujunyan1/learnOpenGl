@@ -26,6 +26,7 @@ namespace Core {
 
 		Camera GetMainCamera() { return mainCamera; }
 
+		void SetMainCamera(Camera c) { mainCamera = c; }
 		void SetWindow(GLFWwindow* w) { window = w; }
 		static GLFWwindow* GetWindow() { return window; }
 	private:
@@ -36,7 +37,7 @@ namespace Core {
 		{
 		}
 
-		Camera mainCamera = Camera(Vector3(0.0f, 0.0f, -4.0f), 0, 0, Vector3(0.0f, 1.0f, 0.0f));
+		Camera mainCamera;
 	};
 }
 
