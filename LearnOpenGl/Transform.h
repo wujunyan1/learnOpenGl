@@ -40,8 +40,6 @@ namespace Core
 		void SetRotate(Vector3 v) {
 			rotate = v;
 
-
-
 			matChanged = true;
 		}
 
@@ -77,13 +75,17 @@ namespace Core
 	private:
 
 		void UpdateLocalMat4() {
-			localMat4 = glm::mat4(1.0f);
+			localMat4 = Mat4(1.0f);
 			localMat4 = glm::translate(localMat4, glm::vec3(position.x, position.y, position.z));
 			localMat4 = glm::rotate(localMat4, rotate.x, glm::vec3(1.0f, 0.0f, 0.0f));
 			localMat4 = glm::rotate(localMat4, rotate.y, glm::vec3(0.0f, 1.0f, 0.0f));
 			localMat4 = glm::rotate(localMat4, rotate.z, glm::vec3(0.0f, 0.0f, 1.0f));
 
 			localMat4 = glm::scale(localMat4, glm::vec3(scale.x, scale.y, scale.z));
+
+			forword = localMat4 * Vector4(0, 0, 1, 0);
+			right = localMat4 * Vector4(1, 0, 0, 0);
+			up = localMat4 * Vector4(0, 1, 0, 0);
 		}
 
 	private:
