@@ -93,6 +93,9 @@
     <ClInclude Include="CameraMove.h">
       <Filter>components</Filter>
     </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -136,6 +139,9 @@
     </ClCompile>
     <ClCompile Include="CameraMove.cpp">
       <Filter>components</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>core</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
