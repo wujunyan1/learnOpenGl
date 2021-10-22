@@ -72,6 +72,27 @@ namespace Core
 			return children;
 		}
 
+		Vector3 getForword() {
+			if (matChanged) {
+				UpdateLocalMat4();
+			}
+			return forword;
+		}
+
+		Vector3 getRight() {
+			if (matChanged) {
+				UpdateLocalMat4();
+			}
+			return right;
+		}
+
+		Vector3 getUp() {
+			if (matChanged) {
+				UpdateLocalMat4();
+			}
+			return up;
+		}
+
 	private:
 
 		void UpdateLocalMat4() {
