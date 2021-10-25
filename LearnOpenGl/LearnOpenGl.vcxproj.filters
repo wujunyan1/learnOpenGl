@@ -96,6 +96,9 @@
     <ClInclude Include="Scene.h">
       <Filter>core</Filter>
     </ClInclude>
+    <ClInclude Include="SceneManager.h">
+      <Filter>core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -141,6 +144,9 @@
       <Filter>components</Filter>
     </ClCompile>
     <ClCompile Include="Scene.cpp">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager.cpp">
       <Filter>core</Filter>
     </ClCompile>
   </ItemGroup>

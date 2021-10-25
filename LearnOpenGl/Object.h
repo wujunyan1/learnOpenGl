@@ -2,6 +2,7 @@
 
 #include <vector>
 #include "Component.h"
+#include "Core.h"
 
 namespace Core {
 	class Object
@@ -60,6 +61,7 @@ namespace Core {
 
 	private:
 		std::vector<Component*>* componentList;
+		String name;
 	};
 
 
