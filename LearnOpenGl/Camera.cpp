@@ -1,5 +1,6 @@
 #include "Camera.h"
 
+using namespace Core;
 Core::Camera::Camera()
 {
 	this->position = Vector3(0, 0, 0);
@@ -48,4 +49,9 @@ glm::mat4 Core::Camera::GetViewMatrix()
 		calcViewMatrix();
 	}
 	return this->lookAt;
+}
+
+void Camera::SetMainCamera(bool iaMain)
+{
+
 }

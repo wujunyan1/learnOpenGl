@@ -5,15 +5,21 @@
 
 namespace Core
 {
-	class Scene : public Object
+	class Scene : public Component
 	{
 	public:
 		Scene() {
-			Transform* transform = AddComponent<Transform>();
-			transform->SetPosition(Vector3(0, 0, 0));
-			transform->SetRotate(Vector3(0, 0, 0));
-			transform->SetScale(Vector3(1, 1, 1));
+			
 		}
+
+		void Init() {};
+		void OnDestroy() {};
+
+		void Bind() {}
+		void UnBind() {}
+		void PreUpdate() {}
+		void Update() {}
+		void LaterUpdate() {}
 
 		Camera getMainCamera();
 		void setMainCamera(Camera camera) { mainCamera = camera; }

@@ -8,8 +8,12 @@ namespace Core {
 	class Object
 	{
 	public:
-		Object() {
+		
+
+	public:
+		Object(unsigned int id) {
 			componentList = new std::vector<Component*>();
+			this->id = id;
 		}
 
 		~Object() {
@@ -20,6 +24,8 @@ namespace Core {
 			}
 			delete componentList;
 		}
+
+		unsigned int GetId() { return id; }
 
 		template <typename T = Component>
 		T* AddComponent()
@@ -62,6 +68,7 @@ namespace Core {
 	private:
 		std::vector<Component*>* componentList;
 		String name;
+		unsigned int id;
 	};
 
 

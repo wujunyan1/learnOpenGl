@@ -18,6 +18,8 @@ namespace Core
 
 		glm::mat4 GetViewMatrix();
 
+		void SetMainCamera(bool iaMain);
+
 		void Init() {};
 		void OnDestroy() {};
 

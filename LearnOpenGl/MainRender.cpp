@@ -10,6 +10,8 @@
 #include "Game.h"
 #include "Camera.h"
 
+#include "SceneManager.h"
+
 using namespace Render;
 using namespace Core;
 
@@ -97,6 +99,12 @@ using namespace Core;
 
     int MainRender::renderLoop(GLFWwindow* window)
     {
+        
+        Scene* scene = SceneManager::GetInstance()->GetCurrScene();
+        scene->PreUpdate();
+        scene->Update();
+        scene->LaterUpdate();
+        
 
         Core::Object* o = new Core::Object();
         Core::Transform * transform = o->AddComponent<Core::Transform>();

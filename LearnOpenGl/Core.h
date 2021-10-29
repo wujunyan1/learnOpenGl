@@ -11,6 +11,11 @@
 #include <malloc.h>
 #include <memory.h>
 #include <tchar.h>
+#include <vector>
+#include <string>
+#include <map>
+
+#include "base/TypeDef.h"
 
 namespace Core 
 {

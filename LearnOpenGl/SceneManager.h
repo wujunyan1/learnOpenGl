@@ -1,6 +1,8 @@
 #pragma once
-
+#include "Core.h"
 #include "Scene.h"
+#include "Object.h"
+#include "ObjectManager.h"
 
 namespace Core 
 {
@@ -13,16 +15,26 @@ namespace Core
 			}
 			return instance;
 		}
+
+		Scene* GetCurrScene() { return currScene; }
 	private:
 		SceneManager() {
-			root = new Object();
-			root->AddComponent<Transform>();
+			root = ObjectManager::createRootObject();
+			transform = root->AddComponent<Transform>();
+			
+			Object* o = ObjectManager::createNewObject();
+			Transform* t = o->AddComponent<Transform>();
+			transform->AddChild(t);
+
+			currScene = o->AddComponent<Scene>();
 		}
 
 	private:
 		static SceneManager* instance;
 
 		Object* root;
+		Transform* transform;
+		Scene* currScene;
 	};
 
 }
