@@ -102,6 +102,9 @@
     <ClInclude Include="ObjectManager.h">
       <Filter>core</Filter>
     </ClInclude>
+    <ClInclude Include="Math\Quaternion.h">
+      <Filter>math</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -154,6 +157,9 @@
     </ClCompile>
     <ClCompile Include="ObjectManager.cpp">
       <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\Quaternion.cpp">
+      <Filter>math</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
