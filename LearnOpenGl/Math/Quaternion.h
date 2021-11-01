@@ -3,7 +3,7 @@
 #include "Vector3.h"
 
 
-namespace Math 
+namespace Core 
 {
     class Quaternion
     {

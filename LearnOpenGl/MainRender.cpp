@@ -106,16 +106,18 @@ using namespace Core;
         scene->LaterUpdate();
         
 
-        Core::Object* o = new Core::Object();
+        Core::Object* o = ObjectManager::createNewObject();
         Core::Transform * transform = o->AddComponent<Core::Transform>();
-        transform->SetPosition(Vector3(0.1f, 0.1f, 0.1f));
-        transform->SetRotate(Vector3(1.02f, 0.02f, 1.0f));
+        transform->SetPosition(Vector3(0.1f, 0.1f, -3.0f));
+        transform->SetRotate(Vector3(0.0f, 0.0f, 0.0f));
         transform->SetScale(Vector3(1.0f, 1.0f, 1.0f));
 
         Core::Camera* camera = o->AddComponent<Core::Camera>();
-        game->SetMainCamera(*camera);
+        scene->getObject()->GetComponent<Core::Transform>()->AddChild(transform);
+        scene->setMainCamera(*camera);
+        camera->initWorldUp(Vector3(0, 1, 0));
 
-        Core::Camera carmera = game->GetMainCamera(); // (Vector3(0.0f, 0.0f, 3.0f), Vector3(0.0f, 0.0f, 0.0f), Vector3(0.0f, 1.0f, 0.0f));
+        //Core::Camera carmera = game->GetMainCamera(); // (Vector3(0.0f, 0.0f, 3.0f), Vector3(0.0f, 0.0f, 0.0f), Vector3(0.0f, 1.0f, 0.0f));
 
 
         unsigned int VAO;
@@ -196,7 +198,7 @@ using namespace Core;
         glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
         glEnableVertexAttribArray(2);
 
-        glm::mat4 view = carmera.GetViewMatrix(); // glm::mat4(1.0f);
+        glm::mat4 view = camera->GetViewMatrix(); // glm::mat4(1.0f);
         // ע�⣬���ǽ�����������Ҫ�����ƶ������ķ������ƶ���
         //view = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f));
 
@@ -206,12 +208,14 @@ using namespace Core;
 
         long time = getCurrentTime();
 
-        const int num = 10;
+        const int num = 100;
         Vector3* v = new Vector3[num];
         for (unsigned int i = 0; i < num; i++)
         {
             v[i] = Vector3((rand() % 3000 - 1500) * 1.0f / 1000.0f, (rand() % 3000 - 1500) * 1.0f / 1000.0f, (rand() % 3000 - 3000) * 1.0f / 1000.0f);
         }
+
+        Transform* shaderTransform = new Transform();
 
         while (!glfwWindowShouldClose(window)) {
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -240,11 +244,11 @@ using namespace Core;
 
             for (unsigned int i = 0; i < num; i++)
             {
-                transform->SetPosition(v[i]);
-                transform->SetRotate(Vector3(1.02f, (float)glfwGetTime() * glm::radians(50.0f) + (i * 20), 1.0f));
-                shader->setMat4("model", transform->GetLocalMat4());
+                shaderTransform->SetPosition(v[i]);
+                shaderTransform->SetRotate(Vector3(1.02f, (float)glfwGetTime() * glm::radians(50.0f) + (i * 20), 1.0f));
+                shader->setMat4("model", shaderTransform->GetLocalMat4());
 
-                glm::mat4 mat4 = transform->GetLocalMat4();
+                glm::mat4 mat4 = shaderTransform->GetLocalMat4();
 
                 float* v3s = vertices3;
                 for (unsigned int j = 0; j < length; j+=5)

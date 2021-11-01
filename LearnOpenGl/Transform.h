@@ -27,6 +27,10 @@ namespace Core
 			children = NULL;
 		}
 
+		Vector3 GetPosition() {
+			return position;
+		}
+
 		void SetPosition(Vector3 v) {
 			position = v;
 			matChanged = true;
@@ -107,6 +111,11 @@ namespace Core
 			forword = localMat4 * Vector4(0, 0, 1, 0);
 			right = localMat4 * Vector4(1, 0, 0, 0);
 			up = localMat4 * Vector4(0, 1, 0, 0);
+
+			printf("pos  x = %f, y = %f, z = %f \n", position.x, position.y, position.z);
+			printf("rotate  x = %f, y = %f, z = %f \n", rotate.x, rotate.y, rotate.z);
+			printf("forword x = %f, y = %f, z = %f \n", forword.x, forword.y, forword.z);
+			matChanged = false;
 		}
 
 	private:

@@ -58,8 +58,9 @@ namespace Core {
 		{
 			for (auto i : *componentList)
 			{
-				if (dynamic_cast<T*>(&i) != nullptr) {
-					return i;
+				T* t = dynamic_cast<T*>(i);
+				if (t != nullptr) {
+					return t;
 				}
 			}
 			return nullptr;

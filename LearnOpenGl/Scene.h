@@ -22,7 +22,7 @@ namespace Core
 		void LaterUpdate() {}
 
 		Camera getMainCamera();
-		void setMainCamera(Camera camera) { mainCamera = camera; }
+		void setMainCamera(Camera camera);
 
 	private:
 		Camera mainCamera;

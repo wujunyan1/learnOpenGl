@@ -5,6 +5,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 #include "Component.h"
+#include "Transform.h"
 
 namespace Core
 {
@@ -12,7 +13,7 @@ namespace Core
 	{
 	public:
 		Camera();
-		void initPos(Vector3 position, Vector3 target, Vector3 worldUp);
+		void initWorldUp(Vector3 worldUp);
 		void initPos(Vector3 position, float yaw, float pitch, Vector3 worldUp);
 		~Camera();
 
@@ -23,7 +24,7 @@ namespace Core
 		void Init() {};
 		void OnDestroy() {};
 
-		void Bind() {}
+		void Bind();
 		void UnBind() {}
 		void PreUpdate() {}
 		void Update() {}
@@ -33,11 +34,9 @@ namespace Core
 		void calcViewMatrix();
 
 	private:
-		Vector3 position;
-		Vector3 forward;
-		Vector3 right;
-		Vector3 up;
+		Transform* tramsform;
 		Vector3 worldUp;
+		Vector3 forward;
 
 		bool change = false;
 		Mat4 lookAt;

@@ -19,6 +19,9 @@ namespace Core
 		void setObject(Object* o);
 
 		Object* getObject();
+
+	protected:
+
 	protected:
 		Object* object = nullptr;
 	};

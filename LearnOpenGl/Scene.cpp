@@ -8,7 +8,7 @@ Camera Core::Scene::getMainCamera()
     return Camera();
 }
 
-void Core::Scene::setMainCamera()
+void Core::Scene::setMainCamera(Camera camera)
 {
-    return Camera();
+    this->mainCamera = camera;
 }

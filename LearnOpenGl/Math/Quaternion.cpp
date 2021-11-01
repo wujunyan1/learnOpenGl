@@ -1,6 +1,6 @@
 #include "Quaternion.h"
 
-using namespace Math;
+using namespace Core;
 
 const Quaternion Quaternion::ZERO(0.0f, 0.0f, 0.0f, 0.0f);
 
