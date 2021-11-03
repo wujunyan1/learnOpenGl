@@ -17,9 +17,9 @@ namespace Core
 			scale = Vector3(1.0f, 1.0f, 1.0f);
 			rotate = Vector3();
 
-			localMat4 = glm::mat4(1.0f);
-			worldMat4 = glm::mat4(1.0f);
-
+			localMat4 = Mat4(1.0f);
+			worldMat4 = Mat4(1.0f);
+			basis = Mat3(1.0f);
 
 
 			matChanged = false;
@@ -45,6 +45,10 @@ namespace Core
 			rotate = v;
 
 			matChanged = true;
+		}
+
+		void Quaternion() {
+
 		}
 
 		glm::mat4 GetLocalMat4() {
@@ -129,6 +133,7 @@ namespace Core
 
 		Mat4 localMat4 = Mat4();
 		Mat4 worldMat4 = Mat4();
+		Mat3 basis = Mat3();
 
 		bool matChanged = false;
 

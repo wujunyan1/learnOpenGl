@@ -22,6 +22,7 @@ namespace Core
 	typedef glm::vec3			Vector3;
 	typedef glm::vec4			Vector4;
 	typedef glm::mat4			Mat4;
+	typedef glm::mat3			Mat3;
 
 	typedef std::string			String;
 
