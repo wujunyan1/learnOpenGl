@@ -9,6 +9,7 @@
 #include "Transform.h"
 #include "Game.h"
 #include "Camera.h"
+#include "CameraMove.h"
 
 #include "SceneManager.h"
 
@@ -116,6 +117,8 @@ using namespace Core;
         scene->getObject()->GetComponent<Core::Transform>()->AddChild(transform);
         scene->setMainCamera(*camera);
         camera->initWorldUp(Vector3(0, 1, 0));
+
+        o->AddComponent<Logic::CameraMove>();
 
         //Core::Camera carmera = game->GetMainCamera(); // (Vector3(0.0f, 0.0f, 3.0f), Vector3(0.0f, 0.0f, 0.0f), Vector3(0.0f, 1.0f, 0.0f));
 
@@ -227,6 +230,8 @@ using namespace Core;
 
             glBindVertexArray(VAO);
             glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+
+            view = camera->GetViewMatrix();
 
             shader->use();
             shader->setFloat4("ourColor", 0.0f, 0.0f, 0.0f, 1.0f);

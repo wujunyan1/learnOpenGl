@@ -5,6 +5,7 @@
 #include <direct.h>
 #include "FilePathManager.h"
 #include "Game.h"
+#include "Input.h"
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
@@ -85,7 +86,7 @@ int main(int argc, char* argv[])
 
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
-    if (action != GLFW_PRESS)
+    /*if (action != GLFW_PRESS)
         return;
     switch (key)
     {
@@ -94,7 +95,12 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
         break;
     default:
         break;
-    }
+    }*/
+
+    if (action == GLFW_PRESS)
+        Core::Input::keys[key] = true;
+    else if (action == GLFW_RELEASE)
+        Core::Input::keys[key] = false;
 }
 
 void mouse_enter_callback(GLFWwindow* window, int index)

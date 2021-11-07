@@ -30,15 +30,20 @@ namespace Core {
 		void SetMainCamera(Camera c) { mainCamera = c; }
 		void SetWindow(GLFWwindow* w) { window = w; }
 		static GLFWwindow* GetWindow() { return window; }
+
+		float GetCurrUpdateDelay() { return delay / 1000; }
+
 	private:
 		static Game* instance;
 		static GLFWwindow* window;
 
 		Game() 
 		{
+			delay = 0.0f;
 		}
 
 		Camera mainCamera;
+		float delay;
 	};
 }
 

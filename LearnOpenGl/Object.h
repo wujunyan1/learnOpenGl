@@ -66,6 +66,26 @@ namespace Core {
 			return nullptr;
 		}
 
+
+		void PreUpdate() {
+			for (auto i : *componentList)
+			{
+				i->PreUpdate();
+			}
+		}
+		void Update() {
+			for (auto i : *componentList)
+			{
+				i->Update();
+			}
+		}
+		void LaterUpdate() {
+			for (auto i : *componentList)
+			{
+				i->LaterUpdate();
+			}
+		}
+
 	private:
 		std::vector<Component*>* componentList;
 		String name;

@@ -1,6 +1,7 @@
 #pragma once
 #include "Core.h"
 #include "Component.h"
+#include "Object.h"
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
@@ -8,18 +9,17 @@
 
 namespace Core 
 {
-	class Transform :public Component
+	class Transform : public Component
 	{
 	public:
 
 		Transform() {
 			position = Vector3();
 			scale = Vector3(1.0f, 1.0f, 1.0f);
-			rotate = Vector3();
 
 			localMat4 = Mat4(1.0f);
 			worldMat4 = Mat4(1.0f);
-			basis = Mat3(1.0f);
+			rotateMat = Mat4(1.0f);
 
 
 			matChanged = false;
@@ -28,7 +28,7 @@ namespace Core
 		}
 
 		Vector3 GetPosition() {
-			return position;
+			return Vector3(position.x, position.y, position.z);
 		}
 
 		void SetPosition(Vector3 v) {
@@ -41,8 +41,11 @@ namespace Core
 			matChanged = true;
 		}
 
-		void SetRotate(Vector3 v) {
-			rotate = v;
+		void SetRotate(Vector3 rotate) {
+			rotateMat = Mat4(1.0f);
+			rotateMat = glm::rotate(rotateMat, rotate.x, glm::vec3(1.0f, 0.0f, 0.0f));
+			rotateMat = glm::rotate(rotateMat, rotate.y, glm::vec3(0.0f, 1.0f, 0.0f));
+			rotateMat = glm::rotate(rotateMat, rotate.z, glm::vec3(0.0f, 0.0f, 1.0f));
 
 			matChanged = true;
 		}
@@ -101,14 +104,41 @@ namespace Core
 			return up;
 		}
 
+
+		void PreUpdate() {
+			if (children == nullptr) {
+				return;
+			}
+			for (auto i : *children)
+			{
+				i->getObject()->PreUpdate();
+			}
+		}
+		void Update() {
+			if (children == nullptr) {
+				return;
+			}
+			for (auto i : *children)
+			{
+				i->getObject()->Update();
+			}
+		}
+		void LaterUpdate() {
+			if (children == nullptr) {
+				return;
+			}
+			for (auto i : *children)
+			{
+				i->getObject()->LaterUpdate();
+			}
+		}
+
 	private:
 
 		void UpdateLocalMat4() {
 			localMat4 = Mat4(1.0f);
-			localMat4 = glm::translate(localMat4, glm::vec3(position.x, position.y, position.z));
-			localMat4 = glm::rotate(localMat4, rotate.x, glm::vec3(1.0f, 0.0f, 0.0f));
-			localMat4 = glm::rotate(localMat4, rotate.y, glm::vec3(0.0f, 1.0f, 0.0f));
-			localMat4 = glm::rotate(localMat4, rotate.z, glm::vec3(0.0f, 0.0f, 1.0f));
+			localMat4 = glm::translate(localMat4, position);
+			localMat4 = localMat4 * rotateMat;
 
 			localMat4 = glm::scale(localMat4, glm::vec3(scale.x, scale.y, scale.z));
 
@@ -116,16 +146,12 @@ namespace Core
 			right = localMat4 * Vector4(1, 0, 0, 0);
 			up = localMat4 * Vector4(0, 1, 0, 0);
 
-			printf("pos  x = %f, y = %f, z = %f \n", position.x, position.y, position.z);
-			printf("rotate  x = %f, y = %f, z = %f \n", rotate.x, rotate.y, rotate.z);
-			printf("forword x = %f, y = %f, z = %f \n", forword.x, forword.y, forword.z);
 			matChanged = false;
 		}
 
 	private:
 		Vector3 position = Vector3();
 		Vector3 scale = Vector3();
-		Vector3 rotate = Vector3();
 
 		Vector3 forword = Vector3();
 		Vector3 right = Vector3();
@@ -133,7 +159,8 @@ namespace Core
 
 		Mat4 localMat4 = Mat4();
 		Mat4 worldMat4 = Mat4();
-		Mat3 basis = Mat3();
+
+		Mat4 rotateMat = Mat4();
 
 		bool matChanged = false;
 

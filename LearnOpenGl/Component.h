@@ -21,8 +21,6 @@ namespace Core
 		Object* getObject();
 
 	protected:
-
-	protected:
 		Object* object = nullptr;
 	};
 }

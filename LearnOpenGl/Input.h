@@ -5,7 +5,7 @@
 #include "Game.h"
 
 namespace Core {
-	class Input
+	static class Input
 	{
 	public:
 		enum class Key
@@ -135,36 +135,40 @@ namespace Core {
 			MENU = GLFW_KEY_MENU,
 		};
 
-		bool isKeyDown(Key key) 
+		static bool isKeyDown(Key key)
 		{
 			return glfwGetKey(Game::GetWindow(), (int)key) == GLFW_PRESS;
 		}
 
-		bool isKeyUp(Key key)
+		static bool isKeyUp(Key key)
 		{
 			return glfwGetKey(Game::GetWindow(), (int)key) == GLFW_RELEASE;
 		}
 
-		bool isKeyTouch(Key key)
+		static bool isKeyTouch(Key key)
 		{
 			return glfwGetKey(Game::GetWindow(), (int)key) == GLFW_REPEAT;
 		}
 
 
-		bool isMouseLeftDown(Key key)
+		static bool isMouseLeftDown(Key key)
 		{
 			return glfwGetKey(Game::GetWindow(), (int)key) == GLFW_PRESS;
 		}
 
-		bool isMouseLeftUp(Key key)
+		static bool isMouseLeftUp(Key key)
 		{
 			return glfwGetKey(Game::GetWindow(), (int)key) == GLFW_RELEASE;
 		}
 
-		bool isMounseTouch(Key key)
+		static bool isMounseTouch(Key key)
 		{
 			return glfwGetKey(Game::GetWindow(), (int)key) == GLFW_REPEAT;
 		}
+
+	public:
+		static bool keys[1024];
 	};
+
 }
 

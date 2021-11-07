@@ -5,6 +5,7 @@ Core::Camera::Camera()
 {
 	this->worldUp = Vector3(0, 0, 0);
 	forward = Vector3(0, 0, 1);
+	position = Vector3(0, 0, 0);
 }
 
 Core::Camera::~Camera()
@@ -14,6 +15,7 @@ void Core::Camera::Bind()
 {
 	tramsform = object->GetComponent<Transform>();
 	forward = tramsform->getForword();
+	position = tramsform->GetPosition();
 	calcViewMatrix();
 }
 
@@ -37,16 +39,15 @@ void Core::Camera::initPos(Vector3 position, float yaw, float pitch, Vector3 wor
 
 void Core::Camera::calcViewMatrix()
 {
-	Vector3 position = tramsform->GetPosition();
+	position = tramsform->GetPosition();
+	forward = tramsform->getForword();
 	this->lookAt = glm::lookAt(position, position + forward, worldUp);
-
-	printf("lookAt x = %f, y = %f, z = %f \n", worldUp.x, worldUp.y, worldUp.z);
 }
 
 glm::mat4 Core::Camera::GetViewMatrix()
 {
 	Vector3 newForward = tramsform->getForword();
-	if (newForward != forward) {
+	if (newForward != forward || position != tramsform->GetPosition()) {
 		calcViewMatrix();
 	}
 	return this->lookAt;

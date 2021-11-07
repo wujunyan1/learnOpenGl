@@ -30,6 +30,8 @@ namespace Core
 		void Update() {}
 		void LaterUpdate() {}
 
+		Vector3 GetWorldUp() { return worldUp; }
+
 	private:
 		void calcViewMatrix();
 
@@ -37,6 +39,7 @@ namespace Core
 		Transform* tramsform;
 		Vector3 worldUp;
 		Vector3 forward;
+		Vector3 position;
 
 		bool change = false;
 		Mat4 lookAt;
