@@ -16,6 +16,7 @@ namespace Core
 		Transform() {
 			position = Vector3();
 			scale = Vector3(1.0f, 1.0f, 1.0f);
+			rotate = Vector3(1.0f, 1.0f, 1.0f);
 
 			localMat4 = Mat4(1.0f);
 			worldMat4 = Mat4(1.0f);
@@ -47,7 +48,12 @@ namespace Core
 			rotateMat = glm::rotate(rotateMat, rotate.y, glm::vec3(0.0f, 1.0f, 0.0f));
 			rotateMat = glm::rotate(rotateMat, rotate.z, glm::vec3(0.0f, 0.0f, 1.0f));
 
+			this->rotate = rotate;
 			matChanged = true;
+		}
+
+		Vector3 GetRotate() {
+			return rotate;
 		}
 
 		void Quaternion() {
@@ -152,6 +158,7 @@ namespace Core
 	private:
 		Vector3 position = Vector3();
 		Vector3 scale = Vector3();
+		Vector3 rotate = Vector3();
 
 		Vector3 forword = Vector3();
 		Vector3 right = Vector3();

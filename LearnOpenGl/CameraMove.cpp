@@ -8,8 +8,6 @@ using namespace Logic;
 using namespace Core;
 
 void CameraMove::Update() {
-    printf("CameraMove::Update \n");
-
 	float delay = Core::Game::GetInstance()->GetCurrUpdateDelay();
 
     Transform* transform = getObject()->GetComponent<Transform>();
@@ -36,4 +34,36 @@ void CameraMove::Update() {
     }
 
     transform->SetPosition(cameraPos);
+
+
+    if (Core::Input::isMouseLeftDown(Input::Key::MOUSE_BUTTON_LEFT)) {
+        printf("isMouseLeftDown \n");
+
+        if (!isTouchDown) {
+            isTouchDown = true;
+            preMousePos = Input::GetCurrMousePos();
+        }
+        Vector2 currMousePos = Input::GetCurrMousePos();
+
+        float xoffset = currMousePos.x - preMousePos.x;
+        float yoffset = preMousePos.y - currMousePos.y; // 注意这里是相反的，因为y坐标的范围是从下往上的
+        preMousePos = currMousePos;
+
+        float sensitivity = 0.01f;
+        xoffset *= sensitivity;
+        yoffset *= sensitivity;
+
+        Vector3 rotate = transform->GetRotate();
+        printf("%s %f %f %f \n", "rotate", rotate.x, rotate.y, rotate.z);
+
+        rotate.y -= xoffset;
+        rotate.x += yoffset;
+
+        printf("%s %f %f %f \n", "rotate", rotate.x, rotate.y, rotate.z);
+        transform->SetRotate(rotate);
+    }
+    if (Core::Input::isMouseLeftUp(Input::Key::MOUSE_BUTTON_LEFT)) {
+        isTouchDown = false;
+    }
+
 }

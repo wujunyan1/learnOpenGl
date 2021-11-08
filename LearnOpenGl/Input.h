@@ -133,6 +133,19 @@ namespace Core {
 			RIGHT_ALT = GLFW_KEY_RIGHT_ALT,
 			RIGHT_SUPER = GLFW_KEY_RIGHT_SUPER,
 			MENU = GLFW_KEY_MENU,
+
+			MOUSE_BUTTON_1 = GLFW_MOUSE_BUTTON_1,
+			MOUSE_BUTTON_2 = GLFW_MOUSE_BUTTON_2,
+			MOUSE_BUTTON_3 = GLFW_MOUSE_BUTTON_3,
+			MOUSE_BUTTON_4 = GLFW_MOUSE_BUTTON_4,
+			MOUSE_BUTTON_5 = GLFW_MOUSE_BUTTON_5,
+			MOUSE_BUTTON_6 = GLFW_MOUSE_BUTTON_6,
+			MOUSE_BUTTON_7 = GLFW_MOUSE_BUTTON_7,
+			MOUSE_BUTTON_8 = GLFW_MOUSE_BUTTON_8,
+			MOUSE_BUTTON_LAST = GLFW_MOUSE_BUTTON_8,
+			MOUSE_BUTTON_LEFT = GLFW_MOUSE_BUTTON_1,
+			MOUSE_BUTTON_RIGHT = GLFW_MOUSE_BUTTON_2,
+			MOUSE_BUTTON_MIDDLE = GLFW_MOUSE_BUTTON_3,
 		};
 
 		static bool isKeyDown(Key key)
@@ -153,12 +166,12 @@ namespace Core {
 
 		static bool isMouseLeftDown(Key key)
 		{
-			return glfwGetKey(Game::GetWindow(), (int)key) == GLFW_PRESS;
+			return keys[(int)key] == true;
 		}
 
 		static bool isMouseLeftUp(Key key)
 		{
-			return glfwGetKey(Game::GetWindow(), (int)key) == GLFW_RELEASE;
+			return keys[(int)key] == false;
 		}
 
 		static bool isMounseTouch(Key key)
@@ -166,8 +179,14 @@ namespace Core {
 			return glfwGetKey(Game::GetWindow(), (int)key) == GLFW_REPEAT;
 		}
 
+		static Vector2 GetCurrMousePos() {
+			return Vector2(mousePos.x, mousePos.y);
+		}
+
 	public:
 		static bool keys[1024];
+		static Vector2 mousePos;
+
 	};
 
 }

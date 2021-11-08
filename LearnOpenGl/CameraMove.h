@@ -1,5 +1,6 @@
 #pragma once
 #include "Component.h"
+#include "Core.h"
 
 namespace Logic 
 {
@@ -17,6 +18,8 @@ namespace Logic
 
 	public:
 		float moveSpeed = 5.0f;
+		Core::Vector2 preMousePos = Core::Vector2();
+		bool isTouchDown = false;
 	};
 }
 

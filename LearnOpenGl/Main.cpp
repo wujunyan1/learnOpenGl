@@ -6,6 +6,7 @@
 #include "FilePathManager.h"
 #include "Game.h"
 #include "Input.h"
+#include "Core.h"
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
@@ -110,23 +111,15 @@ void mouse_enter_callback(GLFWwindow* window, int index)
 
 void mouse_pos_callback(GLFWwindow* window, double x, double y)
 {
-
+    Core::Input::mousePos = Core::Vector2(x, y);
 }
 
 void mouse_button_callback(GLFWwindow* window, int button, int action, int mods)
 {
-    if (action == GLFW_PRESS) switch (button)
-    {
-    case GLFW_MOUSE_BUTTON_LEFT:
-        break;
-    case GLFW_MOUSE_BUTTON_MIDDLE:
-        break;
-    case GLFW_MOUSE_BUTTON_RIGHT:
-        break;
-    default:
-        return;
-    }
-    return;
+    if (action == GLFW_PRESS)
+        Core::Input::keys[button] = true;
+    else if (action == GLFW_RELEASE)
+        Core::Input::keys[button] = false;
 }
 
 // 窗口大小发生变化
