@@ -56,8 +56,8 @@ void CameraMove::Update() {
         Vector3 rotate = transform->GetRotate();
         printf("%s %f %f %f \n", "rotate", rotate.x, rotate.y, rotate.z);
 
-        rotate.y -= xoffset;
-        rotate.x += yoffset;
+        rotate.y += xoffset;
+        rotate.x -= yoffset;
 
         printf("%s %f %f %f \n", "rotate", rotate.x, rotate.y, rotate.z);
         transform->SetRotate(rotate);

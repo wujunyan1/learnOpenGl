@@ -44,8 +44,8 @@ namespace Core
 
 		void SetRotate(Vector3 rotate) {
 			rotateMat = Mat4(1.0f);
-			rotateMat = glm::rotate(rotateMat, rotate.x, glm::vec3(1.0f, 0.0f, 0.0f));
 			rotateMat = glm::rotate(rotateMat, rotate.y, glm::vec3(0.0f, 1.0f, 0.0f));
+			rotateMat = glm::rotate(rotateMat, rotate.x, glm::vec3(1.0f, 0.0f, 0.0f));
 			rotateMat = glm::rotate(rotateMat, rotate.z, glm::vec3(0.0f, 0.0f, 1.0f));
 
 			this->rotate = rotate;
