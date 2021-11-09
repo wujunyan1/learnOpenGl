@@ -3,7 +3,7 @@
 using namespace Core;
 Core::Camera::Camera()
 {
-	this->worldUp = Vector3(0, 0, 0);
+	this->worldUp = Vector3(0, 1.0f, 0);
 	forward = Vector3(0, 0, 1);
 	position = Vector3(0, 0, 0);
 
@@ -44,7 +44,10 @@ void Core::Camera::calcViewMatrix()
 {
 	position = tramsform->GetPosition();
 	forward = tramsform->getForword();
-	this->lookAt = glm::lookAt(position, position + forward, worldUp);
+
+	this->lookAt = glm::lookAt(position,
+		position + forward,
+		worldUp);
 }
 
 glm::mat4 Core::Camera::GetViewMatrix()

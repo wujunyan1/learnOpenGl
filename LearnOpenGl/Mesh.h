@@ -6,6 +6,8 @@
 #include "RenderMesh.h"
 #include "Transform.h"
 
+#include <type_traits>
+
 namespace Core
 {
 	class Mesh : public Component
@@ -15,9 +17,10 @@ namespace Core
 	public:
 		virtual void Bind();
 
-		void SetVertices(Vector3 verts[])
+		template<size_t N>
+		void SetVertices(const Vector3(&verts)[N]) // Vector3 verts[]
 		{
-			int length = verts->length();
+			int length = N;
 			verticesNum = length;
 
 			unsigned int index = 0;
@@ -33,12 +36,15 @@ namespace Core
 				vertices[index] = v.x;
 				vertices[index + 1] = v.y;
 				vertices[index + 2] = v.z;
+
+				printf("%f %f %f ", vertices[index], vertices[index + 1], vertices[index + 2]);
 			}
 		}
 
-		void SetUVs(Vector2 uvs[])
+		template<size_t N>
+		void SetUVs(const Vector2(&uvs)[N])
 		{
-			const int length = uvs->length();
+			int length = N;
 
 			unsigned int index = 0;
 			if (UVs != nullptr) {

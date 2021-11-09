@@ -26,7 +26,8 @@ namespace Render
 
 	private:
 
-        int frame = 0, time = 0, timebase = 0;
+        int frame = 0, timebase = 0;
+		long time = 0;
 		void ShowFrameRate();
 
 		Core::Game* game;

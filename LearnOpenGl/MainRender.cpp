@@ -81,12 +81,12 @@ using namespace Core;
         };
 
     Vector3 testVertices[] = {
-        Vector3(-0.5f,  -0.5f,  -0.5f),
-      Vector3(0.5f,  -0.5f, -0.5f),
-      Vector3(-0.5f,  0.5f, -0.5f),
-      Vector3(0.5f,  0.5f, -0.5f),
-   Vector3(-0.5f,  0.5f, -0.5f),
-   Vector3(-0.5f, -0.5f, -0.5f),
+    Vector3(-0.5f, -0.5f, -0.5f),
+     Vector3(0.5f, -0.5f, -0.5f),
+     Vector3(0.5f,  0.5f, -0.5f),
+     Vector3(0.5f,  0.5f, -0.5f),
+    Vector3(-0.5f,  0.5f, -0.5f),
+    Vector3(-0.5f, -0.5f, -0.5f),
 
    Vector3(-0.5f, -0.5f,  0.5f),
    Vector3(0.5f, -0.5f,  0.5f),
@@ -200,7 +200,7 @@ using namespace Core;
 
         Core::Object* o = ObjectManager::createNewObject();
         Core::Transform * transform = o->AddComponent<Core::Transform>();
-        transform->SetPosition(Vector3(0.1f, 0.1f, -3.0f));
+        transform->SetPosition(Vector3(0.0f, 0.0f, -3.0f));
         transform->SetRotate(Vector3(0.0f, 0.0f, 0.0f));
         transform->SetScale(Vector3(1.0f, 1.0f, 1.0f));
 
@@ -215,7 +215,8 @@ using namespace Core;
         Core::Transform* transform2 = o2->AddComponent<Core::Transform>();
         scene->getObject()->GetComponent<Core::Transform>()->AddChild(transform2);
 
-        transform2->SetPosition(cubePositions[0]);
+        transform2->SetPosition(Vector3(0.0f, 0.0f, -10.0f));
+        transform2->SetRotate(Vector3(1.0f, 1.0f, 0.5f));
         Core::Mesh* mesh = o2->AddComponent<Core::Mesh>();
         mesh->SetVertices(testVertices);
         mesh->SetUVs(testUVs);
@@ -229,22 +230,22 @@ using namespace Core;
         //Core::Camera carmera = game->GetMainCamera(); // (Vector3(0.0f, 0.0f, 3.0f), Vector3(0.0f, 0.0f, 0.0f), Vector3(0.0f, 1.0f, 0.0f));
 
 
-        unsigned int VAO;
-        glGenVertexArrays(1, &VAO);  // ����һ��VAO�� ��������VAO�����괫�� VAO�� 1Ϊ����1����VAO����������ȥ��
-        glBindVertexArray(VAO);     // ʹ�����VAO����VAO��������
+        //unsigned int VAO;
+        //glGenVertexArrays(1, &VAO);  // ����һ��VAO�� ��������VAO�����괫�� VAO�� 1Ϊ����1����VAO����������ȥ��
+        //glBindVertexArray(VAO);     // ʹ�����VAO����VAO��������
 
-        unsigned int VBO;
-        glGenBuffers(1, &VBO);      // ����VBO vertex buffer objects
-        glBindBuffer(GL_ARRAY_BUFFER, VBO);  // ��GL_ARRAY_BUFFER ������ �󶨵����VBO�ϣ�֮����GL_ARRAY_BUFFER ����������ϵĲ���������������� VBO��
+        //unsigned int VBO;
+        //glGenBuffers(1, &VBO);      // ����VBO vertex buffer objects
+        //glBindBuffer(GL_ARRAY_BUFFER, VBO);  // ��GL_ARRAY_BUFFER ������ �󶨵����VBO�ϣ�֮����GL_ARRAY_BUFFER ����������ϵĲ���������������� VBO��
 
-        glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW); // ��GL_ARRAY_BUFFER���������� �����б�
+        //glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW); // ��GL_ARRAY_BUFFER���������� �����б�
 
 
-        unsigned int EBO;
-        glGenBuffers(1, &EBO);      // ����EBO Element Buffer Object
+        //unsigned int EBO;
+        //glGenBuffers(1, &EBO);      // ����EBO Element Buffer Object
 
-        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO); // ��GL_ELEMENT_ARRAY_BUFFER ������ �󶨵����EBO�ϣ�֮����GL_ELEMENT_ARRAY_BUFFER ����������ϵĲ���������������� VBO��
-        glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);     // ��GL_ELEMENT_ARRAY_BUFFER���������� �����б�
+        //glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO); // ��GL_ELEMENT_ARRAY_BUFFER ������ �󶨵����EBO�ϣ�֮����GL_ELEMENT_ARRAY_BUFFER ����������ϵĲ���������������� VBO��
+        //glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);     // ��GL_ELEMENT_ARRAY_BUFFER���������� �����б�
 
 
         //unsigned int vertexShader;
@@ -288,43 +289,43 @@ using namespace Core;
         //glDeleteShader(vertexShader);   // �Ѿ����ӵ� program ����ڲ���Ҫ��
         //glDeleteShader(fragmentShader);
 
-        Shader* shader = new Shader("/asserts/shaders/shader.vs", "/asserts/shaders/shader.fs");
+        //Shader* shader = new Shader("/asserts/shaders/shader.vs", "/asserts/shaders/shader.fs");
 
-        Image* image = ImageLoad::LoadImage("/asserts/images/container.jpg");
-
-
-
-        // ��������
-        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);   // �󶨶��� 0��ʼ�� 3�����ݣ� float���ͣ� �ǹ淶���� ����֮��ļ���� �������
-        // ��ʱʹ�õ������� ��ǰ GL_ARRAY_BUFFER ������������
-        glEnableVertexAttribArray(0);
-
-        // ��ɫ����
-        /*glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(3 * sizeof(float)));
-        glEnableVertexAttribArray(1);*/
-
-        // UV����
-        glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
-        glEnableVertexAttribArray(1);
-
-        glm::mat4 view = camera->GetViewMatrix(); // glm::mat4(1.0f);
-        // ע�⣬���ǽ�����������Ҫ�����ƶ������ķ������ƶ���
-        //view = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f));
+        //Image* image = ImageLoad::LoadImage("/asserts/images/container.jpg");
 
 
-        glm::mat4 projection = glm::mat4(1.0f);
-        projection = glm::perspective(glm::radians(45.0f), 1280.0f / 720, 0.1f, 100.0f);
 
-        long time = getCurrentTime();
+        //// ��������
+        //glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);   // �󶨶��� 0��ʼ�� 3�����ݣ� float���ͣ� �ǹ淶���� ����֮��ļ���� �������
+        //// ��ʱʹ�õ������� ��ǰ GL_ARRAY_BUFFER ������������
+        //glEnableVertexAttribArray(0);
 
-        const int num = 1;
-        Vector3* v = new Vector3[num];
-        for (unsigned int i = 0; i < num; i++)
-        {
-            v[i] = Vector3((rand() % 3000 - 1500) * 1.0f / 1000.0f, (rand() % 3000 - 1500) * 1.0f / 1000.0f, (rand() % 3000 - 3000) * 1.0f / 1000.0f);
-        }
+        //// ��ɫ����
+        ///*glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(3 * sizeof(float)));
+        //glEnableVertexAttribArray(1);*/
 
-        Transform* shaderTransform = new Transform();
+        //// UV����
+        //glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
+        //glEnableVertexAttribArray(1);
+
+        //glm::mat4 view = camera->GetViewMatrix(); // glm::mat4(1.0f);
+        //// ע�⣬���ǽ�����������Ҫ�����ƶ������ķ������ƶ���
+        ////view = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f));
+
+
+        //glm::mat4 projection = glm::mat4(1.0f);
+        //projection = glm::perspective(glm::radians(45.0f), 1280.0f / 720, 0.1f, 100.0f);
+
+        //long time = getCurrentTime();
+
+        //const int num = 1;
+        //Vector3* v = new Vector3[num];
+        //for (unsigned int i = 0; i < num; i++)
+        //{
+        //    v[i] = Vector3((rand() % 3000 - 1500) * 1.0f / 1000.0f, (rand() % 3000 - 1500) * 1.0f / 1000.0f, (rand() % 3000 - 3000) * 1.0f / 1000.0f);
+        //}
+
+        //Transform* shaderTransform = new Transform();
 
         while (!glfwWindowShouldClose(window)) {
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -334,56 +335,56 @@ using namespace Core;
             glClearColor(0, 0, 0, 1.0);
             glClear(GL_COLOR_BUFFER_BIT);
 
-            glBindVertexArray(VAO);
-            glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+            //glBindVertexArray(VAO);
+            //glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
 
-            view = camera->GetViewMatrix();
+            //view = camera->GetViewMatrix();
 
-            shader->use();
-            shader->setFloat4("ourColor", 0.0f, 0.0f, 0.0f, 1.0f);
-            shader->setInt("ourTexture", 0);
-            shader->setMat4("view", view);
-            shader->setMat4("projection", projection);
+            //shader->use();
+            //shader->setFloat4("ourColor", 0.0f, 0.0f, 0.0f, 1.0f);
+            //shader->setInt("ourTexture", 0);
+            //shader->setMat4("view", view);
+            //shader->setMat4("projection", projection);
 
 
-            const int length = sizeof(vertices) / sizeof(vertices[0]);
-            float vertices2[length * num];
-            float vertices3[length];
-            unsigned int index = 0;
+            //const int length = sizeof(vertices) / sizeof(vertices[0]);
+            //float vertices2[length * num];
+            //float vertices3[length];
+            //unsigned int index = 0;
 
-            float* vs = vertices2;
+            //float* vs = vertices2;
 
-            for (unsigned int i = 0; i < num; i++)
-            {
-                shaderTransform->SetPosition(v[i]);
-                shaderTransform->SetRotate(Vector3(1.02f, (float)glfwGetTime() * glm::radians(50.0f) + (i * 20), 1.0f));
-                shader->setMat4("model", shaderTransform->GetLocalMat4());
+            //for (unsigned int i = 0; i < num; i++)
+            //{
+            //    shaderTransform->SetPosition(v[i]);
+            //    shaderTransform->SetRotate(Vector3(1.02f, (float)glfwGetTime() * glm::radians(50.0f) + (i * 20), 1.0f));
+            //    shader->setMat4("model", shaderTransform->GetLocalMat4());
 
-                glm::mat4 mat4 = shaderTransform->GetLocalMat4();
+            //    glm::mat4 mat4 = shaderTransform->GetLocalMat4();
 
-                float* v3s = vertices3;
-                for (unsigned int j = 0; j < length; j+=5)
-                {
-                    glm::vec4 v4 = glm::vec4(vertices[j], vertices[j + 1], vertices[j + 2], 1);
-                    v4 = mat4 * v4;
+            //    float* v3s = vertices3;
+            //    for (unsigned int j = 0; j < length; j+=5)
+            //    {
+            //        glm::vec4 v4 = glm::vec4(vertices[j], vertices[j + 1], vertices[j + 2], 1);
+            //        v4 = mat4 * v4;
 
-                    vertices3[j] = v4.x;
-                    vertices3[j + 1] = v4.y;
-                    vertices3[j + 2] = v4.z;
-                    vertices3[j + 3] = vertices[j + 3];
-                    vertices3[j + 4] = vertices[j + 4];
-                }
+            //        vertices3[j] = v4.x;
+            //        vertices3[j + 1] = v4.y;
+            //        vertices3[j + 2] = v4.z;
+            //        vertices3[j + 3] = vertices[j + 3];
+            //        vertices3[j + 4] = vertices[j + 4];
+            //    }
 
-                memcpy(vs, vertices3, sizeof(vertices3));
-                //index = index + length;
-                vs = vs + length;
-                // glDrawArrays(GL_TRIANGLES, 0, 36);
-            }
-            glBufferData(GL_ARRAY_BUFFER, sizeof(vertices2), vertices2, GL_STREAM_DRAW); // ��GL_ARRAY_BUFFER���������� �����б�
+            //    memcpy(vs, vertices3, sizeof(vertices3));
+            //    //index = index + length;
+            //    vs = vs + length;
+            //    // glDrawArrays(GL_TRIANGLES, 0, 36);
+            //}
+            //glBufferData(GL_ARRAY_BUFFER, sizeof(vertices2), vertices2, GL_STREAM_DRAW); // ��GL_ARRAY_BUFFER���������� �����б�
 
-            glDrawArrays(GL_TRIANGLES, 0, 36 * num);
+            //glDrawArrays(GL_TRIANGLES, 0, 36 * num);
 
-            image->use();
+            //image->use();
 
             // glDrawArrays(GL_TRIANGLES, 0, 3);
 
@@ -397,11 +398,11 @@ using namespace Core;
 
             glfwPollEvents();
             glfwSwapBuffers(window);
-            ShowFrameRate();
+            //ShowFrameRate();
         }
 
 
-        delete shader;
+        //delete shader;
 
         return 0;
     }
