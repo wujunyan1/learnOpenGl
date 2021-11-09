@@ -22,3 +22,12 @@ void Game::Tick(long time)
 	o->Update();
 	o->LaterUpdate();
 }
+
+
+void Game::Render(long time)
+{
+	Scene* currScene = SceneManager::GetInstance()->GetCurrScene();
+	Object* o = currScene->getObject();
+
+	o->Render();
+}

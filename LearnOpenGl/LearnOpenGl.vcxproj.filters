@@ -105,6 +105,12 @@
     <ClInclude Include="Transform.h">
       <Filter>components</Filter>
     </ClInclude>
+    <ClInclude Include="Mesh.h">
+      <Filter>components</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderMesh.h">
+      <Filter>core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -160,6 +166,12 @@
     </ClCompile>
     <ClCompile Include="Transform.cpp">
       <Filter>components</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh.cpp">
+      <Filter>components</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderMesh.cpp">
+      <Filter>core</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

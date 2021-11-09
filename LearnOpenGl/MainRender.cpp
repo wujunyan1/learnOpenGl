@@ -10,6 +10,7 @@
 #include "Game.h"
 #include "Camera.h"
 #include "CameraMove.h"
+#include "Mesh.h"
 
 #include "SceneManager.h"
 
@@ -79,6 +80,96 @@ using namespace Core;
       Vector3(-1.3f,  1.0f, -1.5f)
         };
 
+    Vector3 testVertices[] = {
+        Vector3(-0.5f,  -0.5f,  -0.5f),
+      Vector3(0.5f,  -0.5f, -0.5f),
+      Vector3(-0.5f,  0.5f, -0.5f),
+      Vector3(0.5f,  0.5f, -0.5f),
+   Vector3(-0.5f,  0.5f, -0.5f),
+   Vector3(-0.5f, -0.5f, -0.5f),
+
+   Vector3(-0.5f, -0.5f,  0.5f),
+   Vector3(0.5f, -0.5f,  0.5f),
+   Vector3(0.5f,  0.5f,  0.5f),
+   Vector3(0.5f,  0.5f,  0.5f),
+   Vector3(-0.5f,  0.5f,  0.5f),
+   Vector3(-0.5f, -0.5f,  0.5f),
+
+   Vector3(-0.5f,  0.5f,  0.5f),
+   Vector3(-0.5f,  0.5f, -0.5f),
+   Vector3(-0.5f, -0.5f, -0.5f),
+   Vector3(-0.5f, -0.5f, -0.5f),
+   Vector3(-0.5f, -0.5f,  0.5f),
+   Vector3(-0.5f,  0.5f,  0.5f),
+
+   Vector3(0.5f,  0.5f,  0.5f),
+   Vector3(0.5f,  0.5f, -0.5f),
+   Vector3(0.5f, -0.5f, -0.5f),
+   Vector3(0.5f, -0.5f, -0.5f),
+   Vector3(0.5f, -0.5f,  0.5f),
+   Vector3(0.5f,  0.5f,  0.5f),
+
+   Vector3(-0.5f, -0.5f, -0.5f),
+   Vector3(0.5f, -0.5f, -0.5f),
+   Vector3(0.5f, -0.5f,  0.5f),
+   Vector3(0.5f, -0.5f,  0.5f),
+   Vector3(-0.5f, -0.5f,  0.5f),
+   Vector3(-0.5f, -0.5f, -0.5f),
+
+   Vector3(-0.5f,  0.5f, -0.5f),
+   Vector3(0.5f,  0.5f, -0.5f),
+   Vector3(0.5f,  0.5f,  0.5f),
+   Vector3(0.5f,  0.5f,  0.5f),
+   Vector3(-0.5f,  0.5f,  0.5f),
+   Vector3(-0.5f,  0.5f, -0.5f),
+    };
+
+    Vector2 testUVs[] = {
+    Vector2(0.0f, 0.0f),
+    Vector2(1.0f, 0.0f),
+    Vector2(1.0f, 1.0f),
+    Vector2(1.0f, 1.0f),
+    Vector2(0.0f, 1.0f),
+    Vector2(0.0f, 0.0f),
+
+    Vector2(0.0f, 0.0f),
+    Vector2(1.0f, 0.0f),
+    Vector2(1.0f, 1.0f),
+    Vector2(1.0f, 1.0f),
+    Vector2(0.0f, 1.0f),
+    Vector2(0.0f, 0.0f),
+
+    Vector2(1.0f, 0.0f),
+    Vector2(1.0f, 1.0f),
+    Vector2(0.0f, 1.0f),
+    Vector2(0.0f, 1.0f),
+    Vector2(0.0f, 0.0f),
+    Vector2(1.0f, 0.0f),
+
+    Vector2(1.0f, 0.0f),
+    Vector2(1.0f, 1.0f),
+    Vector2(0.0f, 1.0f),
+    Vector2(0.0f, 1.0f),
+    Vector2(0.0f, 0.0f),
+    Vector2(1.0f, 0.0f),
+
+    Vector2(0.0f, 1.0f),
+    Vector2(1.0f, 1.0f),
+    Vector2(1.0f, 0.0f),
+    Vector2(1.0f, 0.0f),
+    Vector2(0.0f, 0.0f),
+    Vector2(0.0f, 1.0f),
+
+    Vector2(0.0f, 1.0f),
+    Vector2(1.0f, 1.0f),
+    Vector2(1.0f, 0.0f),
+    Vector2(1.0f, 0.0f),
+    Vector2(0.0f, 0.0f),
+    Vector2(0.0f, 1.0f)
+    };
+
+
+
     const char* vertexShaderSource = "#version 330 core\n"
         "layout (location = 0) in vec3 aPos;\n"
         "layout(location = 1) in vec3 aColor;\n" // ��ɫ����������λ��ֵΪ 1
@@ -119,6 +210,21 @@ using namespace Core;
         camera->initWorldUp(Vector3(0, 1, 0));
 
         o->AddComponent<Logic::CameraMove>();
+
+        Core::Object* o2 = ObjectManager::createNewObject();
+        Core::Transform* transform2 = o2->AddComponent<Core::Transform>();
+        scene->getObject()->GetComponent<Core::Transform>()->AddChild(transform2);
+
+        transform2->SetPosition(cubePositions[0]);
+        Core::Mesh* mesh = o2->AddComponent<Core::Mesh>();
+        mesh->SetVertices(testVertices);
+        mesh->SetUVs(testUVs);
+
+        Shader* test_shader = new Shader("/asserts/shaders/shader.vs", "/asserts/shaders/shader.fs");
+        Image* test_image = ImageLoad::LoadImage("/asserts/images/container.jpg");
+        mesh->SetShader(test_shader);
+        mesh->SetImage(test_image);
+        mesh->bindRender();
 
         //Core::Camera carmera = game->GetMainCamera(); // (Vector3(0.0f, 0.0f, 3.0f), Vector3(0.0f, 0.0f, 0.0f), Vector3(0.0f, 1.0f, 0.0f));
 
@@ -198,8 +304,8 @@ using namespace Core;
         glEnableVertexAttribArray(1);*/
 
         // UV����
-        glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
-        glEnableVertexAttribArray(2);
+        glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
+        glEnableVertexAttribArray(1);
 
         glm::mat4 view = camera->GetViewMatrix(); // glm::mat4(1.0f);
         // ע�⣬���ǽ�����������Ҫ�����ƶ������ķ������ƶ���
@@ -211,7 +317,7 @@ using namespace Core;
 
         long time = getCurrentTime();
 
-        const int num = 100;
+        const int num = 1;
         Vector3* v = new Vector3[num];
         for (unsigned int i = 0; i < num; i++)
         {
@@ -284,12 +390,13 @@ using namespace Core;
             //glDrawArrays(GL_TRIANGLES, 0, 36);
             //glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 
-            glfwPollEvents();
-            glfwSwapBuffers(window);
-
             long currTime = getCurrentTime();
             Core::Game::GetInstance()->Tick(currTime - time);
+            Core::Game::GetInstance()->Render(currTime - time);
             time = currTime;
+
+            glfwPollEvents();
+            glfwSwapBuffers(window);
             ShowFrameRate();
         }
 

@@ -6,6 +6,9 @@ Core::Camera::Camera()
 	this->worldUp = Vector3(0, 0, 0);
 	forward = Vector3(0, 0, 1);
 	position = Vector3(0, 0, 0);
+
+	projection = glm::mat4(1.0f);
+	projection = glm::perspective(glm::radians(45.0f), 1280.0f / 720, 0.1f, 100.0f);
 }
 
 Core::Camera::~Camera()

@@ -86,6 +86,13 @@ namespace Core {
 			}
 		}
 
+		void Render() {
+			for (auto i : *componentList)
+			{
+				i->Render();
+			}
+		}
+
 	private:
 		std::vector<Component*>* componentList;
 		String name;

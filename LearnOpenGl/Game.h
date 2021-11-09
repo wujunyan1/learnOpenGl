@@ -24,6 +24,7 @@ namespace Core {
 		}
 
 		void Tick(long time);
+		void Render(long time);
 
 		Camera GetMainCamera() { return mainCamera; }
 

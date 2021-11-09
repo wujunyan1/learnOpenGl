@@ -18,6 +18,7 @@ namespace Core
 		~Camera();
 
 		glm::mat4 GetViewMatrix();
+		Mat4 GetProjection() { return projection; };
 
 		void SetMainCamera(bool iaMain);
 
@@ -43,5 +44,6 @@ namespace Core
 
 		bool change = false;
 		Mat4 lookAt;
+		Mat4 projection;
 	};
 }

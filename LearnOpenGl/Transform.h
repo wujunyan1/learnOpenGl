@@ -139,6 +139,16 @@ namespace Core
 			}
 		}
 
+		void Render() {
+			if (children == nullptr) {
+				return;
+			}
+			for (auto i : *children)
+			{
+				i->getObject()->Render();
+			}
+		}
+
 	private:
 
 		void UpdateLocalMat4() {

@@ -5,7 +5,7 @@ using namespace Core;
 
 Camera Core::Scene::getMainCamera()
 {
-    return Camera();
+    return this->mainCamera;
 }
 
 void Core::Scene::setMainCamera(Camera camera)

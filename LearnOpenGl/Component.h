@@ -15,6 +15,7 @@ namespace Core
 		virtual void PreUpdate() {}
 		virtual void Update() {}
 		virtual void LaterUpdate() {}
+		virtual void Render(){}
 
 		void setObject(Object* o);
 
