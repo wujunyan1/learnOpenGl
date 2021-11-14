@@ -61,6 +61,27 @@ namespace Core
 			}
 		}
 
+		template<size_t N>
+		void SetNormals(const Vector3(&normal)[N])
+		{
+			int length = N;
+
+			unsigned int index = 0;
+			if (normals != nullptr) {
+				delete normals;
+			}
+			normals = new float[length * 3];
+
+			for (int i = 0; i < length; i++)
+			{
+				Vector3 v = normal[i];
+				int index = i * 3;
+				normals[index] = v.x;
+				normals[index + 1] = v.y;
+				normals[index + 2] = v.z;
+			}
+		}
+
 		void SetIndices(unsigned int indices[])
 		{
 			this->indices = indices;
@@ -89,6 +110,7 @@ namespace Core
 	public:
 		float* vertices = nullptr;
 		float* UVs = nullptr;
+		float* normals = nullptr;
 		unsigned int* indices = nullptr;
 		float* vs = nullptr;
 

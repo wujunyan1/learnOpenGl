@@ -48,8 +48,8 @@ using namespace Core;
 
     -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
      0.5f, -0.5f, -0.5f,  1.0f, 1.0f,
-     0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
-     0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
+     0.5f, 0.5f,  0.5f,  1.0f, 0.0f,
+     0.5f, 0.5f,  0.5f,  1.0f, 0.0f,
     -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
     -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
 
@@ -66,109 +66,6 @@ using namespace Core;
         0, 1, 2, // ��һ��������
         2, 3, 0  // �ڶ���������
     };
-
-    Vector3 cubePositions[] = {
-      Vector3(0.0f,  0.0f,  0.0f),
-      Vector3(2.0f,  5.0f, -15.0f),
-      Vector3(-1.5f, -2.2f, -2.5f),
-      Vector3(-3.8f, -2.0f, -12.3f),
-      Vector3(2.4f, -0.4f, -3.5f),
-      Vector3(-1.7f,  3.0f, -7.5f),
-      Vector3(1.3f, -2.0f, -2.5f),
-      Vector3(1.5f,  2.0f, -2.5f),
-      Vector3(1.5f,  0.2f, -1.5f),
-      Vector3(-1.3f,  1.0f, -1.5f)
-        };
-
-    Vector3 testVertices[] = {
-    Vector3(-0.5f, -0.5f, -0.5f),
-     Vector3(0.5f, -0.5f, -0.5f),
-     Vector3(0.5f,  0.5f, -0.5f),
-     Vector3(0.5f,  0.5f, -0.5f),
-    Vector3(-0.5f,  0.5f, -0.5f),
-    Vector3(-0.5f, -0.5f, -0.5f),
-
-   Vector3(-0.5f, -0.5f,  0.5f),
-   Vector3(0.5f, -0.5f,  0.5f),
-   Vector3(0.5f,  0.5f,  0.5f),
-   Vector3(0.5f,  0.5f,  0.5f),
-   Vector3(-0.5f,  0.5f,  0.5f),
-   Vector3(-0.5f, -0.5f,  0.5f),
-
-   Vector3(-0.5f,  0.5f,  0.5f),
-   Vector3(-0.5f,  0.5f, -0.5f),
-   Vector3(-0.5f, -0.5f, -0.5f),
-   Vector3(-0.5f, -0.5f, -0.5f),
-   Vector3(-0.5f, -0.5f,  0.5f),
-   Vector3(-0.5f,  0.5f,  0.5f),
-
-   Vector3(0.5f,  0.5f,  0.5f),
-   Vector3(0.5f,  0.5f, -0.5f),
-   Vector3(0.5f, -0.5f, -0.5f),
-   Vector3(0.5f, -0.5f, -0.5f),
-   Vector3(0.5f, -0.5f,  0.5f),
-   Vector3(0.5f,  0.5f,  0.5f),
-
-   Vector3(-0.5f, -0.5f, -0.5f),
-   Vector3(0.5f, -0.5f, -0.5f),
-   Vector3(0.5f, -0.5f,  0.5f),
-   Vector3(0.5f, -0.5f,  0.5f),
-   Vector3(-0.5f, -0.5f,  0.5f),
-   Vector3(-0.5f, -0.5f, -0.5f),
-
-   Vector3(-0.5f,  0.5f, -0.5f),
-   Vector3(0.5f,  0.5f, -0.5f),
-   Vector3(0.5f,  0.5f,  0.5f),
-   Vector3(0.5f,  0.5f,  0.5f),
-   Vector3(-0.5f,  0.5f,  0.5f),
-   Vector3(-0.5f,  0.5f, -0.5f),
-    };
-
-    Vector2 testUVs[] = {
-    Vector2(0.0f, 0.0f),
-    Vector2(1.0f, 0.0f),
-    Vector2(1.0f, 1.0f),
-    Vector2(1.0f, 1.0f),
-    Vector2(0.0f, 1.0f),
-    Vector2(0.0f, 0.0f),
-
-    Vector2(0.0f, 0.0f),
-    Vector2(1.0f, 0.0f),
-    Vector2(1.0f, 1.0f),
-    Vector2(1.0f, 1.0f),
-    Vector2(0.0f, 1.0f),
-    Vector2(0.0f, 0.0f),
-
-    Vector2(1.0f, 0.0f),
-    Vector2(1.0f, 1.0f),
-    Vector2(0.0f, 1.0f),
-    Vector2(0.0f, 1.0f),
-    Vector2(0.0f, 0.0f),
-    Vector2(1.0f, 0.0f),
-
-    Vector2(1.0f, 0.0f),
-    Vector2(1.0f, 1.0f),
-    Vector2(0.0f, 1.0f),
-    Vector2(0.0f, 1.0f),
-    Vector2(0.0f, 0.0f),
-    Vector2(1.0f, 0.0f),
-
-    Vector2(0.0f, 1.0f),
-    Vector2(1.0f, 1.0f),
-    Vector2(1.0f, 0.0f),
-    Vector2(1.0f, 0.0f),
-    Vector2(0.0f, 0.0f),
-    Vector2(0.0f, 1.0f),
-
-    Vector2(0.0f, 1.0f),
-    Vector2(1.0f, 1.0f),
-    Vector2(1.0f, 0.0f),
-    Vector2(1.0f, 0.0f),
-    Vector2(0.0f, 0.0f),
-    Vector2(0.0f, 1.0f)
-    };
-
-
 
     const char* vertexShaderSource = "#version 330 core\n"
         "layout (location = 0) in vec3 aPos;\n"
@@ -191,8 +88,9 @@ using namespace Core;
 
     int MainRender::renderLoop(GLFWwindow* window)
     {
-        
-        Scene* scene = SceneManager::GetInstance()->GetCurrScene();
+        Game::GetInstance()->LoadMainScene();
+
+        /*Scene* scene = SceneManager::GetInstance()->GetCurrScene();
         scene->PreUpdate();
         scene->Update();
         scene->LaterUpdate();
@@ -225,7 +123,7 @@ using namespace Core;
         Image* test_image = ImageLoad::LoadImage("/asserts/images/container.jpg");
         mesh->SetShader(test_shader);
         mesh->SetImage(test_image);
-        mesh->bindRender();
+        mesh->bindRender();*/
 
         //Core::Camera carmera = game->GetMainCamera(); // (Vector3(0.0f, 0.0f, 3.0f), Vector3(0.0f, 0.0f, 0.0f), Vector3(0.0f, 1.0f, 0.0f));
 

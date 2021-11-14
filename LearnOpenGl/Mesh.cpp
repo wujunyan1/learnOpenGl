@@ -13,10 +13,9 @@ void Mesh::bindRender() {
 	glGenBuffers(1, &VBO);
 	//glGenBuffers(1, &EBO);
 
-	int n = verticesNum * 5;
+	int n = verticesNum * 8;
 	vs = new float[n];
 
-	n = verticesNum * 3;
 	//memcpy(vs, vertices, n * sizeof(vertices[0]));
 	////vs = vs + (verticesNum * 3);
 	//int m = verticesNum * 2 * sizeof(UVs[0]);
@@ -25,14 +24,19 @@ void Mesh::bindRender() {
 
 	for (int i = 0; i < verticesNum; i++)
 	{
-		int index = i * 5;
+		int index = i * 8;
 		int vIndex = i * 3;
 		int uIndex = i * 2;
+		int nIndex = i * 3;
+
 		vs[index] = vertices[vIndex];
 		vs[index + 1] = vertices[vIndex + 1];
 		vs[index + 2] = vertices[vIndex + 2];
 		vs[index + 3] = UVs[uIndex];
 		vs[index + 4] = UVs[uIndex + 1];
+		vs[index + 5] = normals[nIndex];
+		vs[index + 6] = normals[nIndex + 1];
+		vs[index + 7] = normals[nIndex + 2];
 
 		printf("%f \n", vs[i]);
 	}
@@ -43,16 +47,14 @@ void Mesh::bindRender() {
 
 	glBindVertexArray(VAO);
 
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)0);
 	glEnableVertexAttribArray(0);
 
-
-	printf("verticesNum  %d \n", verticesNum);
-	n = verticesNum * 3 * sizeof(float);
-	printf("verticesNum  %d \n", n);
-
-	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
+	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(3 * sizeof(float)));
 	glEnableVertexAttribArray(1);
+
+	glVertexAttribPointer(3, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(5 * sizeof(float)));
+	glEnableVertexAttribArray(3);
 }
 
 void Mesh::Render() {
@@ -72,6 +74,8 @@ void Mesh::Render() {
 	shader->setMat4("view", view);
 	shader->setMat4("projection", projection);
 	shader->setMat4("model", shaderTransform->GetLocalMat4());
+	shader->setVec3("ambientColor", Vector3(1.0f, 1.0f, 1.0f));
+	shader->setVec3("lightPos", Vector3(0.0f, 0.0f, 0.0f));
 
 
 	//glBufferData(GL_ARRAY_BUFFER, sizeof(vs), vs, GL_STREAM_DRAW);

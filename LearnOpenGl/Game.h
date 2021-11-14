@@ -34,6 +34,8 @@ namespace Core {
 
 		float GetCurrUpdateDelay() { return delay / 1000; }
 
+		void LoadMainScene();
+
 	private:
 		static Game* instance;
 		static GLFWwindow* window;

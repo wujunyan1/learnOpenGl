@@ -11,6 +11,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
+#include "Core.h"
 
 class Shader
 {
@@ -29,5 +30,6 @@ public:
     void setInt(const std::string& name, int value) const;
     void setFloat(const std::string& name, float value) const;
     void setFloat4(const std::string& name, float r, float g, float b, float a) const;
+    void setVec3(const std::string& name, Core::Vector3 value) const;
     void setMat4(const std::string& name, glm::mat4 mat) const;
 };
