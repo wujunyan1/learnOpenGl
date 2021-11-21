@@ -12,3 +12,13 @@ void Core::Scene::setMainCamera(Camera camera)
 {
     this->mainCamera = camera;
 }
+
+
+Logic::PointLight Scene::getPointLight()
+{
+    return this->pointlight;
+}
+void Scene::setPointLight(Logic::PointLight pointlight)
+{
+    this->pointlight = pointlight;
+}

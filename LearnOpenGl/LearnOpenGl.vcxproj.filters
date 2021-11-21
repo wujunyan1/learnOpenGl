@@ -111,6 +111,9 @@
     <ClInclude Include="RenderMesh.h">
       <Filter>core</Filter>
     </ClInclude>
+    <ClInclude Include="PointLight.h">
+      <Filter>components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -172,6 +175,9 @@
     </ClCompile>
     <ClCompile Include="RenderMesh.cpp">
       <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="PointLight.cpp">
+      <Filter>components</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

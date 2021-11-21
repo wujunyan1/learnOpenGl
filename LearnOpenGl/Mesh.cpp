@@ -67,15 +67,21 @@ void Mesh::Render() {
 	Camera camera = scene->getMainCamera();
 	Mat4 view = camera.GetViewMatrix();
 	Mat4 projection = camera.GetProjection();
+	Transform* cameraTransform = camera.getObject()->GetComponent<Transform>();
+
+	Logic::PointLight pointLight = scene->getPointLight();
+	Transform * pointTransform = pointLight.getObject()->GetComponent<Transform>();
 
 	shader->use();
 	shader->setFloat4("ourColor", 0.0f, 0.0f, 0.0f, 1.0f);
 	shader->setInt("ourTexture", 0);
 	shader->setMat4("view", view);
 	shader->setMat4("projection", projection);
-	shader->setMat4("model", shaderTransform->GetLocalMat4());
-	shader->setVec3("ambientColor", Vector3(1.0f, 1.0f, 1.0f));
-	shader->setVec3("lightPos", Vector3(0.0f, 0.0f, 0.0f));
+	shader->setMat4("model", shaderTransform->GetLocalToWorldMat4());
+	shader->setMat4("modelInverse", shaderTransform->GetLocalToWorldInverseMat4());
+	shader->setVec3("lightColor", pointLight.lightColor);  //  Vector3(1.0f, 1.0f, 1.0f)
+	shader->setVec3("lightPos", pointTransform->GetPosition()); //  Vector3(0.0f, 2.0f, 0.0f)
+	shader->setVec3("viewPos", cameraTransform->GetPosition());
 
 
 	//glBufferData(GL_ARRAY_BUFFER, sizeof(vs), vs, GL_STREAM_DRAW);

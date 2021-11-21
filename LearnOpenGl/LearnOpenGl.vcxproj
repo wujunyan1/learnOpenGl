@@ -164,6 +164,7 @@
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="ObjectManager.h" />
+    <ClInclude Include="PointLight.h" />
     <ClInclude Include="RenderMesh.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Scene.h" />
@@ -188,6 +189,7 @@
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="ObjectManager.cpp" />
+    <ClCompile Include="PointLight.cpp" />
     <ClCompile Include="RenderMesh.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneManager.cpp" />

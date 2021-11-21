@@ -8,10 +8,12 @@ out vec4 vertexColor;
 uniform vec4 ourColor;
 
 uniform mat4 model;
+uniform mat4 modelInverse;
 uniform mat4 view;
 uniform mat4 projection;
-uniform vec3 ambientColor;
+uniform vec3 lightColor;
 uniform vec3 lightPos;
+uniform vec3 viewPos;
 
 out vec2 TexCoord;
 out vec3 Normal;
@@ -25,5 +27,5 @@ void main()
 
     WorldPos = vec3(model * vec4(aPos, 1.0));
 
-    Normal = mat3(transpose(inverse(model))) * aNormal; // vec3(model * vec4(aNormal, 0.0));
+    Normal = mat3(transpose(modelInverse)) * aNormal; // vec3(model * vec4(aNormal, 0.0));
 }

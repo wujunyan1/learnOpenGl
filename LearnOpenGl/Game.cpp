@@ -6,6 +6,7 @@
 #include "Transform.h"
 #include "CameraMove.h"
 #include "Mesh.h"
+#include "PointLight.h"
 
 #include "Shader.h"
 #include "ImageLoad.h"
@@ -196,7 +197,12 @@ void Game::LoadMainScene()
 
     Core::Object* lightObj = ObjectManager::createNewObject();
     Core::Transform* lightTransform = lightObj->AddComponent<Core::Transform>();
+    lightTransform->SetPosition(Vector3(0.0, 2.0f, 0.0f));
     root->AddChild(lightTransform);
+
+    Logic::PointLight* light = lightObj->AddComponent<Logic::PointLight>();
+
+
     Core::Mesh* lightMesh = lightObj->AddComponent<Core::Mesh>();
     lightMesh->SetVertices(testVertices);
     lightMesh->SetUVs(testUVs);
@@ -208,21 +214,27 @@ void Game::LoadMainScene()
     lightMesh->SetImage(test_light_image);
     lightMesh->bindRender();
 
+    for (size_t i = 0; i < 10; i++)
+    {
+        int x = rand() % 10 + 1;
+        int y = rand() % 10 + 1;
+        int z = rand() % 10 + 1;
 
-    Core::Object* o2 = ObjectManager::createNewObject();
-    Core::Transform* transform2 = o2->AddComponent<Core::Transform>();
-    root->AddChild(transform2);
+        Core::Object* o2 = ObjectManager::createNewObject();
+        Core::Transform* transform2 = o2->AddComponent<Core::Transform>();
+        root->AddChild(transform2);
 
-    transform2->SetPosition(Vector3(0.0f, 0.0f, -10.0f));
-    transform2->SetRotate(Vector3(0.0f, 0.0f, 0.0f));
-    Core::Mesh* mesh = o2->AddComponent<Core::Mesh>();
-    mesh->SetVertices(testVertices);
-    mesh->SetUVs(testUVs);
-    mesh->SetNormals(testNormal);
+        transform2->SetPosition(Vector3(x, y, z));
+        transform2->SetRotate(Vector3(0.0f, 0.0f, 0.0f));
+        Core::Mesh* mesh = o2->AddComponent<Core::Mesh>();
+        mesh->SetVertices(testVertices);
+        mesh->SetUVs(testUVs);
+        mesh->SetNormals(testNormal);
 
-    Shader* test_shader = new Shader("/asserts/shaders/shader.vert", "/asserts/shaders/shader.frag");
-    Image* test_image = ImageLoad::LoadImage("/asserts/images/container.jpg");
-    mesh->SetShader(test_shader);
-    mesh->SetImage(test_image);
-    mesh->bindRender();
+        Shader* test_shader = new Shader("/asserts/shaders/shader.vert", "/asserts/shaders/shader.frag");
+        Image* test_image = ImageLoad::LoadImage("/asserts/images/container.jpg");
+        mesh->SetShader(test_shader);
+        mesh->SetImage(test_image);
+        mesh->bindRender();
+    }
 }

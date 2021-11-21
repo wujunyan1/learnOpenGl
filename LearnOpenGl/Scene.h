@@ -2,6 +2,7 @@
 #include "Object.h"
 #include "Transform.h"
 #include "Camera.h"
+#include "PointLight.h"
 
 namespace Core
 {
@@ -24,8 +25,12 @@ namespace Core
 		Camera getMainCamera();
 		void setMainCamera(Camera camera);
 
+		Logic::PointLight getPointLight();
+		void setPointLight(Logic::PointLight pointlight);
 	private:
 		Camera mainCamera;
+
+		Logic::PointLight pointlight;
 	};
 }
 

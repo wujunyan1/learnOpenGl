@@ -18,7 +18,7 @@ namespace Core
 			scale = Vector3(1.0f, 1.0f, 1.0f);
 			rotate = Vector3(1.0f, 1.0f, 1.0f);
 
-			localMat4 = Mat4(1.0f);
+			localToWorldMat4 = Mat4(1.0f);
 			worldMat4 = Mat4(1.0f);
 			rotateMat = Mat4(1.0f);
 
@@ -60,11 +60,18 @@ namespace Core
 
 		}
 
-		glm::mat4 GetLocalMat4() {
+		glm::mat4 GetLocalToWorldMat4() {
 			if (matChanged) {
 				UpdateLocalMat4();
 			}
-			return localMat4;
+			return localToWorldMat4;
+		}
+
+		glm::mat4 GetLocalToWorldInverseMat4() {
+			if (matChanged) {
+				UpdateLocalMat4();
+			}
+			return localToWorldInverseMat4;
 		}
 
 		glm::mat4 GetWorldMat4() {
@@ -152,15 +159,17 @@ namespace Core
 	private:
 
 		void UpdateLocalMat4() {
-			localMat4 = Mat4(1.0f);
-			localMat4 = glm::translate(localMat4, position);
-			localMat4 = localMat4 * rotateMat;
+			localToWorldMat4 = Mat4(1.0f);
+			localToWorldMat4 = glm::translate(localToWorldMat4, position);
+			localToWorldMat4 = localToWorldMat4 * rotateMat;
 
-			localMat4 = glm::scale(localMat4, glm::vec3(scale.x, scale.y, scale.z));
+			localToWorldMat4 = glm::scale(localToWorldMat4, glm::vec3(scale.x, scale.y, scale.z));
 
-			forword = localMat4 * Vector4(0, 0, 1, 0);
-			right = localMat4 * Vector4(1, 0, 0, 0);
-			up = localMat4 * Vector4(0, 1, 0, 0);
+			forword = localToWorldMat4 * Vector4(0, 0, 1, 0);
+			right = localToWorldMat4 * Vector4(1, 0, 0, 0);
+			up = localToWorldMat4 * Vector4(0, 1, 0, 0);
+
+			localToWorldInverseMat4 = glm::inverse(localToWorldMat4);
 
 			matChanged = false;
 		}
@@ -174,8 +183,10 @@ namespace Core
 		Vector3 right = Vector3();
 		Vector3 up = Vector3();
 
-		Mat4 localMat4 = Mat4();
+		Mat4 localToWorldMat4 = Mat4();
 		Mat4 worldMat4 = Mat4();
+
+		Mat4 localToWorldInverseMat4 = Mat4();
 
 		Mat4 rotateMat = Mat4();
 

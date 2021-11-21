@@ -37,8 +37,6 @@ void CameraMove::Update() {
 
 
     if (Core::Input::isMouseLeftDown(Input::Key::MOUSE_BUTTON_LEFT)) {
-        printf("isMouseLeftDown \n");
-
         if (!isTouchDown) {
             isTouchDown = true;
             preMousePos = Input::GetCurrMousePos();
@@ -54,12 +52,10 @@ void CameraMove::Update() {
         yoffset *= sensitivity;
 
         Vector3 rotate = transform->GetRotate();
-        printf("%s %f %f %f \n", "rotate", rotate.x, rotate.y, rotate.z);
 
         rotate.y += xoffset;
         rotate.x -= yoffset;
 
-        printf("%s %f %f %f \n", "rotate", rotate.x, rotate.y, rotate.z);
         transform->SetRotate(rotate);
     }
     if (Core::Input::isMouseLeftUp(Input::Key::MOUSE_BUTTON_LEFT)) {
