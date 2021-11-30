@@ -79,9 +79,20 @@ void Mesh::Render() {
 	shader->setMat4("projection", projection);
 	shader->setMat4("model", shaderTransform->GetLocalToWorldMat4());
 	shader->setMat4("modelInverse", shaderTransform->GetLocalToWorldInverseMat4());
-	shader->setVec3("lightColor", pointLight.lightColor);  //  Vector3(1.0f, 1.0f, 1.0f)
-	shader->setVec3("lightPos", pointTransform->GetPosition()); //  Vector3(0.0f, 2.0f, 0.0f)
+
+	//shader->setVec3("lightColor", pointLight.lightColor);  //  Vector3(1.0f, 1.0f, 1.0f)
+	shader->setVec3("light.position", pointTransform->GetPosition()); //  Vector3(0.0f, 2.0f, 0.0f)
+	shader->setVec3("light.ambient", 0.2f, 0.2f, 0.2f);
+	shader->setVec3("light.diffuse", 0.5f, 0.5f, 0.5f); // 将光照调暗了一些以搭配场景
+	shader->setVec3("light.specular", 1.0f, 1.0f, 1.0f);
+
 	shader->setVec3("viewPos", cameraTransform->GetPosition());
+
+	shader->setVec3("material.ambient", 1.0f, 0.5f, 0.31f);
+	shader->setVec3("material.diffuse", 1.0f, 0.5f, 0.31f);
+	shader->setVec3("material.specular", 0.5f, 0.5f, 0.5f);
+	shader->setFloat("material.shininess", 32.0f);
+
 
 
 	//glBufferData(GL_ARRAY_BUFFER, sizeof(vs), vs, GL_STREAM_DRAW);

@@ -11,8 +11,6 @@ uniform mat4 model;
 uniform mat4 modelInverse;
 uniform mat4 view;
 uniform mat4 projection;
-uniform vec3 lightColor;
-uniform vec3 lightPos;
 uniform vec3 viewPos;
 
 out vec2 TexCoord;
