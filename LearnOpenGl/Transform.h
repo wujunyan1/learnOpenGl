@@ -42,6 +42,8 @@ namespace Core
 			matChanged = true;
 		}
 
+		// https://zhuanlan.zhihu.com/p/45404840
+		// https://baike.baidu.com/item/%E6%AC%A7%E6%8B%89%E8%A7%92/1626212
 		void SetRotate(Vector3 rotate) {
 			rotateMat = Mat4(1.0f);
 			rotateMat = glm::rotate(rotateMat, rotate.y, glm::vec3(0.0f, 1.0f, 0.0f));

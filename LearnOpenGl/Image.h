@@ -4,6 +4,7 @@
 
 class Image
 {
+
 public:
 	Image(int width, int height, int nrChannels, unsigned char* data) :width(width), height(height), nrChannels(nrChannels)
 	{
@@ -33,7 +34,6 @@ public:
 			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
 			break;
 		case 4:
-			printf("%x\n", nrChannels);
 			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
 			break;
 		default:
@@ -42,15 +42,19 @@ public:
 		glGenerateMipmap(GL_TEXTURE_2D);
 	}
 
-	void use() 
+	void use(int textureIndex) 
 	{
 		//glDepthMask(GL_FALSE);                                                         //关掉深度测试     
 		glEnable(GL_BLEND);                                                            //开混合模式贴图     
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);                             //设置混合方式 
 
 		glBindTexture(GL_TEXTURE_2D, texture);
+		glActiveTexture(Image::textureIndex[textureIndex]);
 		//glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_BLEND);			//贴图模式为混合
 	}
+
+public:
+	static const int textureIndex[32];
 
 private:
 

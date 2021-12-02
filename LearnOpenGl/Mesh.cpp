@@ -74,7 +74,6 @@ void Mesh::Render() {
 
 	shader->use();
 	shader->setFloat4("ourColor", 0.0f, 0.0f, 0.0f, 1.0f);
-	shader->setInt("ourTexture", 0);
 	shader->setMat4("view", view);
 	shader->setMat4("projection", projection);
 	shader->setMat4("model", shaderTransform->GetLocalToWorldMat4());
@@ -88,18 +87,19 @@ void Mesh::Render() {
 
 	shader->setVec3("viewPos", cameraTransform->GetPosition());
 
-	shader->setVec3("material.ambient", 1.0f, 0.5f, 0.31f);
-	shader->setVec3("material.diffuse", 1.0f, 0.5f, 0.31f);
+	shader->setVec3("material.ambient", 0.1f, 0.1f, 0.1f);
+	shader->setVec3("material.diffuse", 0.4f, 0.4f, 0.4f);
 	shader->setVec3("material.specular", 0.5f, 0.5f, 0.5f);
 	shader->setFloat("material.shininess", 32.0f);
 
 
+	image->use(0);
+	shader->setInt("ourTexture", 0);
 
 	//glBufferData(GL_ARRAY_BUFFER, sizeof(vs), vs, GL_STREAM_DRAW);
 	//glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
 	//printf("verticesNum  %d \n", verticesNum);
-	image->use();
 
 
 	glBindVertexArray(VAO);
