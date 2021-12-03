@@ -211,7 +211,7 @@ void Game::LoadMainScene()
     Shader* test_light_shader = new Shader("/asserts/shaders/ambientLight.vert", "/asserts/shaders/ambientLight.frag");
     Image* test_light_image = ImageLoad::LoadImage("/asserts/images/container.jpg");
     lightMesh->SetShader(test_light_shader);
-    lightMesh->SetImage(test_light_image);
+    lightMesh->SetImage(test_light_image, 0);
     lightMesh->bindRender();
 
     for (size_t i = 0; i < 10; i++)
@@ -234,7 +234,7 @@ void Game::LoadMainScene()
         Shader* test_shader = new Shader("/asserts/shaders/shader.vert", "/asserts/shaders/shader.frag");
         Image* test_image = ImageLoad::LoadImage("/asserts/images/container.jpg");
         mesh->SetShader(test_shader);
-        mesh->SetImage(test_image);
+        mesh->SetImage(test_image, 0);
         mesh->bindRender();
     }
 }

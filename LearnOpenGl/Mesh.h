@@ -92,9 +92,15 @@ namespace Core
 			this->shader = shader;
 		}
 
-		void SetImage(Image* image)
+		void SetImage(Image* image, int index)
 		{
 			this->image = image;
+			if (images.size() <= index) {
+				images.push_back(image);
+			}
+			else {
+				images[index] = image;
+			}
 		}
 
 		void bindRender();
@@ -117,6 +123,7 @@ namespace Core
 		int verticesNum = 0;
 
 		Shader* shader;
+		std::vector<Image*> images = std::vector<Image*>();
 		Image* image;
 
 		RenderMesh* renderMesh;

@@ -32,5 +32,5 @@ const int Image::textureIndex[32] = {
 	GL_TEXTURE28,
 	GL_TEXTURE29,
 	GL_TEXTURE30,
-	GL_TEXTURE31,
-}
+	GL_TEXTURE31
+};

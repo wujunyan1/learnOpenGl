@@ -295,6 +295,7 @@ using namespace Core;
             time = currTime;
 
             glfwPollEvents();
+
             glfwSwapBuffers(window);
             //ShowFrameRate();
         }
