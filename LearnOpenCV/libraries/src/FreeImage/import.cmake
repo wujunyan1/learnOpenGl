@@ -1,0 +1,1 @@
+add_definitions("-DFREEIMAGE_LIB")

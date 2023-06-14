@@ -1,0 +1,2 @@
+file(GLOB_RECURSE WEBP_HEADER_FILES *.h *.inl)
+file(GLOB_RECURSE WEBP_SOURCE_FILES *.cpp *.c)

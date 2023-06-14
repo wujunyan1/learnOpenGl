@@ -1,0 +1,6 @@
+curlver.h.dist
+stamp-h2
+stamp-h3
+# do not put curl_config_android.h into .gitignore
+curl_config_linux.h
+curl_config_win32.h
